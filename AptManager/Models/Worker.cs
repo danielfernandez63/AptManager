@@ -7,11 +7,10 @@ using System.Web;
 
 namespace AptManager.Models
 {
-    public class Manager
+    public class Worker
     {
         [Key]
-        public int ManagerId { get; set; }
-
+        public int WorkerId { get; set; }
         [ForeignKey("ApplicationUser")]
         public string ApplicationUserId { get; set; }
         public ApplicationUser ApplicationUser { get; set; }
