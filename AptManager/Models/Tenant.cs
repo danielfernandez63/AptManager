@@ -36,9 +36,5 @@ namespace AptManager.Models
 
         [Display(Name = "Rent balance due")]
         public int BalanceDue{ get; set; }
-
-        [ForeignKey("UserId")]
-        public string UserId { get; set; }
-        public ApplicationUser User { get; set; }
     }
 }

@@ -29,5 +29,12 @@ namespace AptManager.Models
         {
             return new ApplicationDbContext();
         }
+        public DbSet<Worker> Workers { get; set; }
+        public DbSet<Tenant> Tenants{ get; set; }
+        public DbSet<Visitor> Visitors { get; set; }
+        public DbSet<Manager> Managers { get; set; }
+        public DbSet<HousingUnit> HousingUnits { get; set; }
+        public DbSet<MaintenanceOrder> MaintenanceOrders { get; set; }
+        
     }
 }
