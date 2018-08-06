@@ -12,9 +12,6 @@ namespace AptManager.Models
         [Key]
         public int UnitId { get; set; }
 
-        [ForeignKey("Tenant")]
-        public int TenantId { get; set; }
-        public Tenant Tenant { get; set; }
 
         [Display(Name = "Monthly rent")]
         public int MonthlyRent { get; set; }
