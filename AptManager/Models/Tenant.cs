@@ -5,7 +5,8 @@ using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Web;
 
-namespace ApartmentManager.Models
+
+namespace AptManager.Models
 {
     public class Tenant
     {
@@ -28,5 +29,9 @@ namespace ApartmentManager.Models
 
         [Display(Name = "Phone Number")]
         public string PhoneNumber { get; set; }
+
+        [Display(Name = "Rent balance due")]
+        public int BalanceDue{ get; set; }
+
     }
 }
