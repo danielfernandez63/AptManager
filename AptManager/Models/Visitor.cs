@@ -27,5 +27,9 @@ namespace AptManager.Models
 
         [Display(Name = "Phone Number")]
         public string PhoneNumber { get; set; }
+
+        [ForeignKey("UserId")]
+        public string UserId { get; set; }
+        public ApplicationUser User { get; set; }
     }
 }
