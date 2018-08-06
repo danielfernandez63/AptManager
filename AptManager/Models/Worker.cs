@@ -11,6 +11,9 @@ namespace AptManager.Models
     {
         [Key]
         public int WorkerId { get; set; }
+        [ForeignKey("ApplicationUser")]
+        public string ApplicationUserId { get; set; }
+        public ApplicationUser ApplicationUser { get; set; }
 
         [Display(Name = "First Name")]
         public string FirstName { get; set; }
