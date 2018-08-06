@@ -204,9 +204,9 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201808062017278_fixedmodelerror.cs" />
-    <Compile Include="Migrations\201808062017278_fixedmodelerror.Designer.cs">
-      <DependentUpon>201808062017278_fixedmodelerror.cs</DependentUpon>
+    <Compile Include="Migrations\201808062040498_init.cs" />
+    <Compile Include="Migrations\201808062040498_init.Designer.cs">
+      <DependentUpon>201808062040498_init.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -298,8 +298,8 @@
     <Content Include="Scripts\jquery-3.3.1.min.map" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201808062017278_fixedmodelerror.resx">
-      <DependentUpon>201808062017278_fixedmodelerror.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201808062040498_init.resx">
+      <DependentUpon>201808062040498_init.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
