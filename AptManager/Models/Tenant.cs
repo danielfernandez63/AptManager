@@ -13,6 +13,10 @@ namespace AptManager.Models
         [Key]
         public int TenantId { get; set; }
 
+        [ForeignKey("ApplicationUser")]
+        public string ApplicationUserId { get; set; }
+        public ApplicationUser ApplicationUser { get; set; }
+
         [ForeignKey("HousingUnit")]
         [Display(Name = "Unit Number")]
         public int UnitId { get; set; }
