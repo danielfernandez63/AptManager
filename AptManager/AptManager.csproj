@@ -301,10 +301,10 @@
     <Content Include="Views\Manager\Create.cshtml" />
     <Content Include="Views\Manager\Edit.cshtml" />
     <Content Include="Views\Manager\Delete.cshtml" />
+    <Content Include="Views\Tenants\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Views\Tenants\" />
     <Folder Include="Views\Visitors\" />
     <Folder Include="Views\Workers\" />
   </ItemGroup>

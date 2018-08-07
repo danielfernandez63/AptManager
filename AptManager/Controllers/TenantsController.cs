@@ -16,7 +16,7 @@ namespace AptManager.Controllers
         // GET: Tenants
         public ActionResult Index()
         {
-            return View();
+            return View(db.MaintenanceOrders.ToList());
         }
 
         // GET: HousingUnits/Details/5
