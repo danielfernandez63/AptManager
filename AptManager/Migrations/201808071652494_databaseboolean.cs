@@ -3,7 +3,7 @@ namespace AptManager.Migrations
     using System;
     using System.Data.Entity.Migrations;
     
-    public partial class init : DbMigration
+    public partial class databaseboolean : DbMigration
     {
         public override void Up()
         {
@@ -25,26 +25,30 @@ namespace AptManager.Migrations
                     {
                         OrderId = c.Int(nullable: false, identity: true),
                         UnitId = c.Int(nullable: false),
+                        WorkerId = c.Int(nullable: false),
                         Name = c.String(),
                         Description = c.String(),
                         DueDate = c.DateTime(nullable: false),
+                        IsCompleted = c.Boolean(nullable: false),
                     })
                 .PrimaryKey(t => t.OrderId)
                 .ForeignKey("dbo.HousingUnits", t => t.UnitId, cascadeDelete: true)
-                .Index(t => t.UnitId);
+                .ForeignKey("dbo.Workers", t => t.WorkerId, cascadeDelete: true)
+                .Index(t => t.UnitId)
+                .Index(t => t.WorkerId);
             
             CreateTable(
-                "dbo.Managers",
+                "dbo.Workers",
                 c => new
                     {
-                        ManagerId = c.Int(nullable: false, identity: true),
+                        WorkerId = c.Int(nullable: false, identity: true),
                         ApplicationUserId = c.String(maxLength: 128),
                         FirstName = c.String(),
                         LastName = c.String(),
                         Email = c.String(),
                         PhoneNumber = c.String(),
                     })
-                .PrimaryKey(t => t.ManagerId)
+                .PrimaryKey(t => t.WorkerId)
                 .ForeignKey("dbo.AspNetUsers", t => t.ApplicationUserId)
                 .Index(t => t.ApplicationUserId);
             
@@ -107,6 +111,24 @@ namespace AptManager.Migrations
                 .Index(t => t.RoleId);
             
             CreateTable(
+                "dbo.Managers",
+                c => new
+                    {
+                        ManagerId = c.Int(nullable: false, identity: true),
+                        ApplicationUserId = c.String(maxLength: 128),
+                        UnitId = c.Int(nullable: false),
+                        FirstName = c.String(),
+                        LastName = c.String(),
+                        Email = c.String(),
+                        PhoneNumber = c.String(),
+                    })
+                .PrimaryKey(t => t.ManagerId)
+                .ForeignKey("dbo.AspNetUsers", t => t.ApplicationUserId)
+                .ForeignKey("dbo.HousingUnits", t => t.UnitId, cascadeDelete: true)
+                .Index(t => t.ApplicationUserId)
+                .Index(t => t.UnitId);
+            
+            CreateTable(
                 "dbo.AspNetRoles",
                 c => new
                     {
@@ -150,56 +172,45 @@ namespace AptManager.Migrations
                 .ForeignKey("dbo.AspNetUsers", t => t.ApplicationUserId)
                 .Index(t => t.ApplicationUserId);
             
-            CreateTable(
-                "dbo.Workers",
-                c => new
-                    {
-                        WorkerId = c.Int(nullable: false, identity: true),
-                        ApplicationUserId = c.String(maxLength: 128),
-                        FirstName = c.String(),
-                        LastName = c.String(),
-                        Email = c.String(),
-                        PhoneNumber = c.String(),
-                    })
-                .PrimaryKey(t => t.WorkerId)
-                .ForeignKey("dbo.AspNetUsers", t => t.ApplicationUserId)
-                .Index(t => t.ApplicationUserId);
-            
         }
         
         public override void Down()
         {
-            DropForeignKey("dbo.Workers", "ApplicationUserId", "dbo.AspNetUsers");
             DropForeignKey("dbo.Visitors", "ApplicationUserId", "dbo.AspNetUsers");
             DropForeignKey("dbo.Tenants", "UnitId", "dbo.HousingUnits");
             DropForeignKey("dbo.Tenants", "ApplicationUserId", "dbo.AspNetUsers");
             DropForeignKey("dbo.AspNetUserRoles", "RoleId", "dbo.AspNetRoles");
+            DropForeignKey("dbo.Managers", "UnitId", "dbo.HousingUnits");
             DropForeignKey("dbo.Managers", "ApplicationUserId", "dbo.AspNetUsers");
+            DropForeignKey("dbo.MaintenanceOrders", "WorkerId", "dbo.Workers");
+            DropForeignKey("dbo.Workers", "ApplicationUserId", "dbo.AspNetUsers");
             DropForeignKey("dbo.AspNetUserRoles", "UserId", "dbo.AspNetUsers");
             DropForeignKey("dbo.AspNetUserLogins", "UserId", "dbo.AspNetUsers");
             DropForeignKey("dbo.AspNetUserClaims", "UserId", "dbo.AspNetUsers");
             DropForeignKey("dbo.MaintenanceOrders", "UnitId", "dbo.HousingUnits");
-            DropIndex("dbo.Workers", new[] { "ApplicationUserId" });
             DropIndex("dbo.Visitors", new[] { "ApplicationUserId" });
             DropIndex("dbo.Tenants", new[] { "UnitId" });
             DropIndex("dbo.Tenants", new[] { "ApplicationUserId" });
             DropIndex("dbo.AspNetRoles", "RoleNameIndex");
+            DropIndex("dbo.Managers", new[] { "UnitId" });
+            DropIndex("dbo.Managers", new[] { "ApplicationUserId" });
             DropIndex("dbo.AspNetUserRoles", new[] { "RoleId" });
             DropIndex("dbo.AspNetUserRoles", new[] { "UserId" });
             DropIndex("dbo.AspNetUserLogins", new[] { "UserId" });
             DropIndex("dbo.AspNetUserClaims", new[] { "UserId" });
             DropIndex("dbo.AspNetUsers", "UserNameIndex");
-            DropIndex("dbo.Managers", new[] { "ApplicationUserId" });
+            DropIndex("dbo.Workers", new[] { "ApplicationUserId" });
+            DropIndex("dbo.MaintenanceOrders", new[] { "WorkerId" });
             DropIndex("dbo.MaintenanceOrders", new[] { "UnitId" });
-            DropTable("dbo.Workers");
             DropTable("dbo.Visitors");
             DropTable("dbo.Tenants");
             DropTable("dbo.AspNetRoles");
+            DropTable("dbo.Managers");
             DropTable("dbo.AspNetUserRoles");
             DropTable("dbo.AspNetUserLogins");
             DropTable("dbo.AspNetUserClaims");
             DropTable("dbo.AspNetUsers");
-            DropTable("dbo.Managers");
+            DropTable("dbo.Workers");
             DropTable("dbo.MaintenanceOrders");
             DropTable("dbo.HousingUnits");
         }

@@ -7,13 +7,13 @@ namespace AptManager.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.2.0-61023")]
-    public sealed partial class testingpostmetadataissue : IMigrationMetadata
+    public sealed partial class databaseboolean : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(testingpostmetadataissue));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(databaseboolean));
         
         string IMigrationMetadata.Id
         {
-            get { return "201808062134203_testing-post-metadata-issue"; }
+            get { return "201808071652494_databaseboolean"; }
         }
         
         string IMigrationMetadata.Source
