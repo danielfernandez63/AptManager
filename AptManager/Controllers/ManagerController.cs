@@ -7,6 +7,7 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using AptManager.Models;
+using Microsoft.AspNet.Identity;
 
 namespace AptManager.Controllers
 {
@@ -29,16 +30,37 @@ namespace AptManager.Controllers
             return View(db.Tenants.ToList());
         }
 
-        public ActionResult VisitorsToTenants()
+        public ActionResult VisitorsToTenants(int? id)
         {
-            return View();
+            {
+                if (id == null)
+                {
+                    return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                }
+                Visitor visitor = db.Visitors.Find(id);
+                if (visitor == null)
+                {
+                    return HttpNotFound();
+                }
+                return View(visitor);
+            }
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult VisitorsToTenants(Visitor visitor, Tenant tenant)
         {
-            return View();
+            var user = (from v in db.Visitors where v.ApplicationUserId == visitor.ApplicationUserId select v).FirstOrDefault();
+            Tenant newTenant = new Tenant();
+            newTenant.ApplicationUserId = user.ApplicationUserId;
+            newTenant.FirstName = user.FirstName;
+            newTenant.LastName = user.LastName;
+            newTenant.PhoneNumber = user.PhoneNumber;
+            newTenant.Email = user.Email;
+            db.Tenants.Add(newTenant);
+            db.Visitors.Remove(user);
+            db.SaveChanges();
+            return RedirectToAction("Visitors", "Manager");
         }
 
         // GET: HousingUnits/Details/5
@@ -67,16 +89,17 @@ namespace AptManager.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "UnitId,MonthlyRent,Bedrooms,SquareFootage,OutdoorAccess")] HousingUnit housingUnit)
+        public ActionResult Create([Bind(Include = "VisitorId,ApplicationUserId,FirstName,LastName,PhoneNumber,Email")] Visitor visitor)
         {
             if (ModelState.IsValid)
             {
-                db.HousingUnits.Add(housingUnit);
+                visitor.ApplicationUserId = User.Identity.GetUserId();
+                db.Visitors.Add(visitor);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
-            return View(housingUnit);
+            return View(visitor);
         }
 
         // GET: HousingUnits/Edit/5
