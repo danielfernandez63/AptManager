@@ -7,6 +7,7 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using AptManager.Models;
+using Microsoft.AspNet.Identity;
 
 namespace AptManager.Controllers
 {
@@ -19,6 +20,19 @@ namespace AptManager.Controllers
         {
             var maintenanceOrders = db.MaintenanceOrders.Include(m => m.HousingUnit);
             return View(maintenanceOrders.ToList());
+        }
+
+        public ActionResult IndexMyWorkOrder()
+        {
+
+            if (User.Identity.IsAuthenticated && User.IsInRole("Maintenance"))
+            {
+                var id = User.Identity.GetUserId();
+                var worker = db.Workers.Where(w => w.WorkerId.Equals(id)).First();
+                var maintenanceOrders = db.MaintenanceOrders.Include(m => m.WorkerId == worker.WorkerId).ToList();
+                return View(maintenanceOrders.ToList());
+            }
+            return View();
         }
 
         // GET: MaintenanceOrders/Details/5

@@ -7,13 +7,13 @@ namespace AptManager.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.2.0-61023")]
-    public sealed partial class init : IMigrationMetadata
+    public sealed partial class addedForeignKeysToMaintenanceOrder : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(init));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(addedForeignKeysToMaintenanceOrder));
         
         string IMigrationMetadata.Id
         {
-            get { return "201808062042348_init"; }
+            get { return "201808071611046_addedForeignKeysToMaintenanceOrder"; }
         }
         
         string IMigrationMetadata.Source
