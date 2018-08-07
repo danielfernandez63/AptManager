@@ -7,6 +7,7 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using AptManager.Models;
+using Microsoft.AspNet.Identity;
 
 namespace AptManager.Controllers
 {
@@ -16,7 +17,10 @@ namespace AptManager.Controllers
         // GET: Tenants
         public ActionResult Index()
         {
-            return View(db.MaintenanceOrders.ToList());
+            var userId = User.Identity.GetUserId();
+            var tenantInfo = (from c in db.Tenants where c.TenantId.Equals(userId) select c);
+            tenantInfo.ToList();
+            return View(tenantInfo);
         }
 
         // GET: HousingUnits/Details/5
@@ -45,16 +49,17 @@ namespace AptManager.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "UnitId,MonthlyRent,Bedrooms,SquareFootage,OutdoorAccess")] HousingUnit housingUnit)
+        public ActionResult Create([Bind(Include = "FirstName,LastName,PhoneNumber,Email")] Tenant tenant)
         {
             if (ModelState.IsValid)
             {
-                db.HousingUnits.Add(housingUnit);
+                tenant.ApplicationUserId = User.Identity.GetUserId();
+                db.Tenants.Add(tenant);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
-            return View(housingUnit);
+            return View(tenant);
         }
 
         // GET: HousingUnits/Edit/5
@@ -64,12 +69,12 @@ namespace AptManager.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            HousingUnit housingUnit = db.HousingUnits.Find(id);
-            if (housingUnit == null)
+            Tenant tenant = db.Tenants.Find(id);
+            if (tenant == null)
             {
                 return HttpNotFound();
             }
-            return View(housingUnit);
+            return View(tenant);
         }
 
         // POST: HousingUnits/Edit/5
