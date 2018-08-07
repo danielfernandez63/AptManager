@@ -25,11 +25,11 @@ namespace AptManager.Controllers
         public ActionResult IndexMyWorkOrder()
         {
 
-            if (User.Identity.IsAuthenticated && User.IsInRole("Maintenance"))
+            if (User.Identity.IsAuthenticated && User.IsInRole("Maintenance" ))
             {
                 var id = User.Identity.GetUserId();
                 var worker = db.Workers.Where(w => w.WorkerId.Equals(id)).First();
-                var maintenanceOrders = db.MaintenanceOrders.Include(m => m.WorkerId == worker.WorkerId).ToList();
+                var maintenanceOrders = db.MaintenanceOrders.Include(m => m.WorkerId == worker.WorkerId && m.IsCompleted != true).ToList();
                 return View(maintenanceOrders.ToList());
             }
             return View();
@@ -50,7 +50,38 @@ namespace AptManager.Controllers
             return View(maintenanceOrder);
         }
 
-        // GET: MaintenanceOrders/Create
+        // GET: MaintenanceOrders/TenantSubmission
+        public ActionResult TenantWorkOrderSubmission()
+        {
+            if (User.Identity.IsAuthenticated && User.IsInRole("Tenant"))
+            {
+                var id = User.Identity.GetUserId();
+                var Tenant = db.Tenants.Where(t => t.TenantId.Equals(id)).First();
+                ViewBag.UnitId = new SelectList(db.HousingUnits, "UnitId", "UnitId");
+                return View(Tenant);
+            }
+            return View();
+        }
+
+        // POST: MaintenanceOrders/TenantSubmission
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult TenantWorkOrderSubmission([Bind(Include = "OrderId,UnitId,Name,Description,DueDate")] MaintenanceOrder maintenanceOrder, Tenant tenant)
+        {
+            if (ModelState.IsValid)
+            {
+                //ADD TWILLIO API FUNCTIONALITY HERE??
+                maintenanceOrder.HousingUnit.UnitId = tenant.HousingUnit.UnitId;
+                db.MaintenanceOrders.Add(maintenanceOrder);
+                db.SaveChanges();
+                return RedirectToAction("Index");
+            }
+
+            ViewBag.UnitId = new SelectList(db.HousingUnits, "UnitId", "UnitId", maintenanceOrder.UnitId);
+            return View(maintenanceOrder);
+        }
+
+        // GET: MaintenanceOrders/TenantSubmission
         public ActionResult Create()
         {
             ViewBag.UnitId = new SelectList(db.HousingUnits, "UnitId", "UnitId");
@@ -132,6 +163,42 @@ namespace AptManager.Controllers
             db.MaintenanceOrders.Remove(maintenanceOrder);
             db.SaveChanges();
             return RedirectToAction("Index");
+        }
+
+        public ActionResult ConfirmComplete(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            MaintenanceOrder maintenanceOrder = db.MaintenanceOrders.Find(id);
+            if (maintenanceOrder == null)
+            {
+                return HttpNotFound();
+            }
+            ViewBag.UnitId = new SelectList(db.HousingUnits, "UnitId", "UnitId", maintenanceOrder.UnitId);
+            return View(maintenanceOrder);
+        }
+
+        // POST: MaintenanceOrders/Edit/5
+        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
+        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult ConfirmComplete([Bind(Include = "OrderId,UnitId,Name,Description,DueDate,IsComplete")] MaintenanceOrder maintenanceOrder)
+        {
+            if (ModelState.IsValid)
+            {
+                if (maintenanceOrder.IsCompleted != true)
+                {
+                db.Entry(maintenanceOrder).State = EntityState.Modified;
+                db.SaveChanges();
+                return RedirectToAction("IndexMyWorkOrder");
+
+                }
+            }
+            ViewBag.UnitId = new SelectList(db.HousingUnits, "UnitId", "UnitId", maintenanceOrder.UnitId);
+            return View(maintenanceOrder);
         }
 
         protected override void Dispose(bool disposing)

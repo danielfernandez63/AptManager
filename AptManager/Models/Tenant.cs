@@ -36,5 +36,6 @@ namespace AptManager.Models
 
         [Display(Name = "Rent balance due")]
         public int BalanceDue{ get; set; }
+
     }
 }

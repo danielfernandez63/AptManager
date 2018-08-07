@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="15.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <Import Project="..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.0\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props" Condition="Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.0\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" />
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
@@ -210,9 +210,9 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201808071646195_AddedForeignKeysToMaintenanceOrderModel.cs" />
-    <Compile Include="Migrations\201808071646195_AddedForeignKeysToMaintenanceOrderModel.Designer.cs">
-      <DependentUpon>201808071646195_AddedForeignKeysToMaintenanceOrderModel.cs</DependentUpon>
+    <Compile Include="Migrations\201808071936177_updatedatabase.cs" />
+    <Compile Include="Migrations\201808071936177_updatedatabase.Designer.cs">
+      <DependentUpon>201808071936177_updatedatabase.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\201808072023519_Seeded-model.cs" />
     <Compile Include="Migrations\201808072023519_Seeded-model.Designer.cs">
@@ -318,6 +318,8 @@
     <Content Include="Views\Manager\Tenants.cshtml" />
     <Content Include="Views\Workers\View.cshtml" />
     <Content Include="Views\MaintenanceOrders\IndexMyWorkOrder.cshtml" />
+    <Content Include="Views\MaintenanceOrders\ConfirmComplete.cshtml" />
+    <Content Include="Views\MaintenanceOrders\TenantWorkOrderSubmission.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -337,8 +339,8 @@
     <Content Include="Scripts\jquery-3.3.1.min.map" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201808071646195_AddedForeignKeysToMaintenanceOrderModel.resx">
-      <DependentUpon>201808071646195_AddedForeignKeysToMaintenanceOrderModel.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201808071936177_updatedatabase.resx">
+      <DependentUpon>201808071936177_updatedatabase.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201808072023519_Seeded-model.resx">
       <DependentUpon>201808072023519_Seeded-model.cs</DependentUpon>

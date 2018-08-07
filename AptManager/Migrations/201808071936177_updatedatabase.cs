@@ -3,7 +3,7 @@ namespace AptManager.Migrations
     using System;
     using System.Data.Entity.Migrations;
     
-    public partial class testingpostmetadataissue : DbMigration
+    public partial class updatedatabase : DbMigration
     {
         public override void Up()
         {
