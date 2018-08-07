@@ -201,12 +201,17 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\VisitorsController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Migrations\201808062017278_fixedmodelerror.cs" />
     <Compile Include="Migrations\201808062017278_fixedmodelerror.Designer.cs">
       <DependentUpon>201808062017278_fixedmodelerror.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201808062134203_testing-post-metadata-issue.cs" />
+    <Compile Include="Migrations\201808062134203_testing-post-metadata-issue.Designer.cs">
+      <DependentUpon>201808062134203_testing-post-metadata-issue.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -280,6 +285,11 @@
     <Content Include="Views\Manage\VerifyPhoneNumber.cshtml" />
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
+    <Content Include="Views\Visitors\View.cshtml" />
+    <Content Include="Views\Visitors\Create.cshtml" />
+    <Content Include="Views\Visitors\Details.cshtml" />
+    <Content Include="Views\Visitors\Edit.cshtml" />
+    <Content Include="Views\Visitors\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -300,6 +310,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201808062017278_fixedmodelerror.resx">
       <DependentUpon>201808062017278_fixedmodelerror.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201808062134203_testing-post-metadata-issue.resx">
+      <DependentUpon>201808062134203_testing-post-metadata-issue.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
