@@ -14,7 +14,29 @@ namespace AptManager.Controllers
     {
         private ApplicationDbContext db = new ApplicationDbContext();
         // GET: Manager
+
         public ActionResult Index()
+        {
+            return View();
+        }
+        public ActionResult Visitors()
+        {
+            return View(db.Visitors.ToList());
+        }
+
+        public ActionResult Tenants()
+        {
+            return View(db.Tenants.ToList());
+        }
+
+        public ActionResult VisitorsToTenants()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult VisitorsToTenants(Visitor visitor, Tenant tenant)
         {
             return View();
         }
