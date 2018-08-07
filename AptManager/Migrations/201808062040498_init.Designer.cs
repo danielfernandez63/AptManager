@@ -7,13 +7,13 @@ namespace AptManager.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.2.0-61023")]
-    public sealed partial class fixedmodelerror : IMigrationMetadata
+    public sealed partial class init : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(fixedmodelerror));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(init));
         
         string IMigrationMetadata.Id
         {
-            get { return "201808062017278_fixedmodelerror"; }
+            get { return "201808062040498_init"; }
         }
         
         string IMigrationMetadata.Source
