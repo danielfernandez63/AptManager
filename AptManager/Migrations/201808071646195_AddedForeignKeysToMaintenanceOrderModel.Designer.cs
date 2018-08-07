@@ -13,7 +13,7 @@ namespace AptManager.Migrations
         
         string IMigrationMetadata.Id
         {
-            get { return "201808071641191_AddedForeignKeysToMaintenanceOrderModel"; }
+            get { return "201808071646195_AddedForeignKeysToMaintenanceOrderModel"; }
         }
         
         string IMigrationMetadata.Source
