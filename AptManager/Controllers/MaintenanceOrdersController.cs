@@ -25,7 +25,7 @@ namespace AptManager.Controllers
         public ActionResult IndexMyWorkOrder()
         {
 
-            if (User.Identity.IsAuthenticated && User.IsInRole("Maintenance"))
+            if (User.Identity.IsAuthenticated && User.IsInRole("Maintenance" ))
             {
                 var id = User.Identity.GetUserId();
                 var worker = db.Workers.Where(w => w.WorkerId.Equals(id)).First();
@@ -50,7 +50,38 @@ namespace AptManager.Controllers
             return View(maintenanceOrder);
         }
 
-        // GET: MaintenanceOrders/Create
+        // GET: MaintenanceOrders/TenantSubmission
+        public ActionResult TenantWorkOrderSubmission()
+        {
+            if (User.Identity.IsAuthenticated && User.IsInRole("Tenant"))
+            {
+                var id = User.Identity.GetUserId();
+                var Tenant = db.Tenants.Where(t => t.TenantId.Equals(id)).First();
+                ViewBag.UnitId = new SelectList(db.HousingUnits, "UnitId", "UnitId");
+                return View(Tenant);
+            }
+            return View();
+        }
+
+        // POST: MaintenanceOrders/TenantSubmission
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult TenantWorkOrderSubmission([Bind(Include = "OrderId,UnitId,Name,Description,DueDate")] MaintenanceOrder maintenanceOrder, Tenant tenant)
+        {
+            if (ModelState.IsValid)
+            {
+                //ADD TWILLIO API FUNCTIONALITY HERE??
+                maintenanceOrder.HousingUnit.UnitId = tenant.HousingUnit.UnitId;
+                db.MaintenanceOrders.Add(maintenanceOrder);
+                db.SaveChanges();
+                return RedirectToAction("Index");
+            }
+
+            ViewBag.UnitId = new SelectList(db.HousingUnits, "UnitId", "UnitId", maintenanceOrder.UnitId);
+            return View(maintenanceOrder);
+        }
+
+        // GET: MaintenanceOrders/TenantSubmission
         public ActionResult Create()
         {
             ViewBag.UnitId = new SelectList(db.HousingUnits, "UnitId", "UnitId");
