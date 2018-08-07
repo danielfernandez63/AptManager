@@ -214,6 +214,14 @@
     <Compile Include="Migrations\201808071646195_AddedForeignKeysToMaintenanceOrderModel.Designer.cs">
       <DependentUpon>201808071646195_AddedForeignKeysToMaintenanceOrderModel.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201808072023519_Seeded-model.cs" />
+    <Compile Include="Migrations\201808072023519_Seeded-model.Designer.cs">
+      <DependentUpon>201808072023519_Seeded-model.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201808072055446_test.cs" />
+    <Compile Include="Migrations\201808072055446_test.Designer.cs">
+      <DependentUpon>201808072055446_test.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\HousingUnit.cs" />
@@ -331,6 +339,12 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201808071646195_AddedForeignKeysToMaintenanceOrderModel.resx">
       <DependentUpon>201808071646195_AddedForeignKeysToMaintenanceOrderModel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201808072023519_Seeded-model.resx">
+      <DependentUpon>201808072023519_Seeded-model.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201808072055446_test.resx">
+      <DependentUpon>201808072055446_test.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
