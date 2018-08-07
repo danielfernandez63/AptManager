@@ -12,7 +12,6 @@ namespace AptManager.Models
         [Key]
         public int UnitId { get; set; }
 
-
         [Display(Name = "Monthly rent")]
         public int MonthlyRent { get; set; }
 

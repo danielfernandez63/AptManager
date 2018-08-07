@@ -7,13 +7,13 @@ namespace AptManager.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.2.0-61023")]
-    public sealed partial class init : IMigrationMetadata
+    public sealed partial class testingpostmetadataissue : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(init));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(testingpostmetadataissue));
         
         string IMigrationMetadata.Id
         {
-            get { return "201808062042348_init"; }
+            get { return "201808062134203_testing-post-metadata-issue"; }
         }
         
         string IMigrationMetadata.Source
