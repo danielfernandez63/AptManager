@@ -307,6 +307,8 @@
     <Content Include="Views\Tenants\Details.cshtml" />
     <Content Include="Views\Tenants\Edit.cshtml" />
     <Content Include="Views\Workers\Index.cshtml" />
+    <Content Include="Views\Manager\Visitors.cshtml" />
+    <Content Include="Views\Manager\Tenants.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
