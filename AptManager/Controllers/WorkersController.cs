@@ -21,9 +21,12 @@ namespace AptManager.Controllers
             return View();
         }
 
-        public ActionResult RedirectToOrderIndex()
+        public ActionResult WorkOrderList()
         {
-            return RedirectToAction("IndexMyWorkOrder", "MaintenanceOrders", User.Identity.GetUserId());
+            var currentWorker = User.Identity.GetUserId();
+            Worker me = db.Workers.Where(m => m.ApplicationUserId == currentWorker).Single();
+            var myWorkOrders = db.MaintenanceOrders.Where(w => w.WorkerId == me.WorkerId);
+            return View(db.MaintenanceOrders.ToList());
         }
         // GET: HousingUnits/Details/5
         public ActionResult Details(int? id)
