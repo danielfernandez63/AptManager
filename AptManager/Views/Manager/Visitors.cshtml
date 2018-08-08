@@ -44,8 +44,9 @@
             </tr>
             <td>
                 @Html.ActionLink("Validate Visitor", "VisitorsToTenants", new { id = item.VisitorId })|
-                @Html.ActionLink("Tenants", "Tenants")
-                @Html.ActionLink("Work Orders", "WorkOrders")
+                @Html.ActionLink("Tenants", "Tenants") |
+                @Html.ActionLink("Work Orders", "WorkOrders") |
+                @Html.ActionLink("Remove", "Delete")
             </td>
         }
 

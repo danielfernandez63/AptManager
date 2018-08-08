@@ -7,13 +7,13 @@ namespace AptManager.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.2.0-61023")]
-    public sealed partial class ChangeDisplayNameAndNullibleProp : IMigrationMetadata
+    public sealed partial class initialmigration : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(ChangeDisplayNameAndNullibleProp));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(initialmigration));
         
         string IMigrationMetadata.Id
         {
-            get { return "201808082057202_ChangeDisplayNameAndNullibleProp"; }
+            get { return "201808081839258_initialmigration"; }
         }
         
         string IMigrationMetadata.Source

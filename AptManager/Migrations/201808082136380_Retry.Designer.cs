@@ -7,13 +7,13 @@ namespace AptManager.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.2.0-61023")]
-    public sealed partial class FixedMaintananceMOdel : IMigrationMetadata
+    public sealed partial class Retry : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(FixedMaintananceMOdel));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(Retry));
         
         string IMigrationMetadata.Id
         {
-            get { return "201808082054077_FixedMaintananceMOdel"; }
+            get { return "201808082136380_Retry"; }
         }
         
         string IMigrationMetadata.Source
