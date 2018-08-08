@@ -70,33 +70,33 @@ namespace AptManager.Controllers
                     return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
                 }
                 Visitor visitor = db.Visitors.Find(id);
-                if (visitor == null)
+                VisitorViewModel model = new VisitorViewModel();
+                model.Visitor.VisitorId = visitor.VisitorId;
+                if (model == null)
                 {
                     return HttpNotFound();
                 }
-                return View(visitor);
+                return View(model);
             }
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult VisitorsToTenants(Visitor visitor, Tenant tenant)
+        public ActionResult VisitorsToTenants()
         {
             VisitorViewModel model = new VisitorViewModel();
-            var user = (from v in db.Visitors where v.ApplicationUserId == visitor.ApplicationUserId select v).FirstOrDefault();
+            {
+                Visitor visitor = new Visitor();
+                Tenant tenant = new Tenant();
+            }
+            var user = (from v in db.Visitors where v.ApplicationUserId == model.Visitor.ApplicationUserId select v).FirstOrDefault();
             Tenant newTenant = new Tenant();
-            model.VisitorId = user.VisitorId;
-            model.ApplicationUserId = user.ApplicationUserId;
-            model.FirstName = user.FirstName;
-            model.LastName = user.LastName;
-            model.Email = user.Email;
-            model.PhoneNumber = user.PhoneNumber;
-            newTenant.ApplicationUserId = model.ApplicationUserId;
-            newTenant.FirstName = model.FirstName;
-            newTenant.LastName = model.LastName;
-            newTenant.PhoneNumber = model.PhoneNumber;
-            newTenant.Email = model.Email;
-            newTenant.UnitId = model.UnitId;
+            newTenant.ApplicationUserId = model.Visitor.ApplicationUserId;
+            newTenant.FirstName = model.Visitor.FirstName;
+            newTenant.LastName = model.Visitor.LastName;
+            newTenant.PhoneNumber = model.Visitor.PhoneNumber;
+            newTenant.Email = model.Visitor.Email;
+            newTenant.UnitId = model.Tenant.UnitId;
             db.Tenants.Add(newTenant);
             db.Visitors.Remove(user);
             db.SaveChanges();
