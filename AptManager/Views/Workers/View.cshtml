@@ -15,6 +15,9 @@
             @Html.DisplayNameFor(model => model.UnitId)
         </th>
         <th>
+            @Html.DisplayNameFor(model => model.WorkerId)
+        </th>
+        <th>
             @Html.DisplayNameFor(model => model.Name)
         </th>
         <th>
@@ -22,6 +25,9 @@
         </th>
         <th>
             @Html.DisplayNameFor(model => model.DueDate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.IsCompleted)
         </th>
         <th></th>
     </tr>
@@ -32,6 +38,9 @@
             @Html.DisplayFor(modelItem => item.UnitId)
         </td>
         <td>
+            @Html.DisplayFor(modelItem => item.WorkerId)
+        </td>
+        <td>
             @Html.DisplayFor(modelItem => item.Name)
         </td>
         <td>
@@ -39,6 +48,9 @@
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.DueDate)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.IsCompleted)
         </td>
         <td>
             @Html.ActionLink("Edit", "Edit", new { id=item.OrderId }) |

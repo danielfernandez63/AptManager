@@ -18,7 +18,7 @@ namespace AptManager.Models
 
         [ForeignKey("HousingUnit")]
         [Display(Name = "Unit Number")]
-        public int UnitId { get; set; }
+        public int? UnitId { get; set; }
         public HousingUnit HousingUnit { get; set; }
 
 
