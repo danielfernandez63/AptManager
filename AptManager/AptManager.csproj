@@ -231,6 +231,7 @@
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\Tenant.cs" />
     <Compile Include="Models\Visitor.cs" />
+    <Compile Include="Models\VisitorViewModel.cs" />
     <Compile Include="Models\Worker.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
@@ -320,7 +321,7 @@
     <Content Include="Views\Manager\Index.cshtml" />
     <Content Include="Views\Manager\Details.cshtml" />
     <Content Include="Views\Manager\Create.cshtml" />
-    <Content Include="Views\Manager\Edit.cshtml" />
+    <Content Include="Views\Manager\EditTenant.cshtml" />
     <Content Include="Views\Manager\Delete.cshtml" />
     <Content Include="Views\Tenants\Index.cshtml" />
     <Content Include="Views\Tenants\Create.cshtml" />
@@ -333,13 +334,8 @@
     <Content Include="Views\MaintenanceOrders\IndexMyWorkOrder.cshtml" />
     <Content Include="Views\MaintenanceOrders\ConfirmComplete.cshtml" />
     <Content Include="Views\MaintenanceOrders\TenantWorkOrderSubmission.cshtml" />
-    <Content Include="Views\Visitors\Create.cshtml" />
-    <Content Include="Views\Visitors\Details.cshtml" />
-    <Content Include="Views\Visitors\Edit.cshtml" />
-    <Content Include="Views\Visitors\Index.cshtml" />
-    <Content Include="Views\Visitors\View.cshtml" />
-    <Content Include="Views\Workers\Edit.cshtml" />
-    <Content Include="Views\Home\Attractions.cshtml" />
+    <Content Include="Views\Manager\VisitorsToTenants.cshtml" />
+    <Content Include="Views\Manager\WorkOrders.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
