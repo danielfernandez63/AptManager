@@ -22,12 +22,16 @@ namespace AptManager.Models
         public int? WorkerId { get; set; }
         public Worker Worker { get; set; }
 
+        [Display(Name = "Name Of Repair")]
         public string Name { get; set; }
 
+        [Display(Name = "Description Of Work To Be Done")]
         public string Description { get; set; }
 
+        [Display(Name = "Repair Due Date")]
         public DateTime? DueDate { get; set; }
 
-        public bool IsCompleted { get; set; }
+        [Display(Name = "Work Completed")]
+        public bool? IsCompleted { get; set; }
     }
 }

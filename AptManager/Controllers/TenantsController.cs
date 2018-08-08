@@ -17,25 +17,30 @@ namespace AptManager.Controllers
         // GET: Tenants
         public ActionResult Index()
         {
-            var userId = User.Identity.GetUserId();
-            var tenantInfo = (from c in db.Tenants where c.TenantId.Equals(userId) select c);
-            tenantInfo.ToList();
-            return View(tenantInfo);
+
+
+            var user = User.Identity.GetUserId();
+
+            var loggedInUser = db.Tenants.Where(c => c.ApplicationUserId == user).Single();
+           
+           
+            return View();
         }
 
         // GET: HousingUnits/Details/5
         public ActionResult Details(int? id)
         {
-            if (id == null)
+            var user = User.Identity.GetUserId();
+
+            var loggedInUser = db.Tenants.Where(c => c.ApplicationUserId == user).Single();
+
+
+            if (loggedInUser.ApplicationUserId == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            HousingUnit housingUnit = db.HousingUnits.Find(id);
-            if (housingUnit == null)
-            {
-                return HttpNotFound();
-            }
-            return View(housingUnit);
+            return View(loggedInUser);
+         
         }
 
         // GET: HousingUnits/Create
@@ -65,10 +70,13 @@ namespace AptManager.Controllers
         // GET: HousingUnits/Edit/5
         public ActionResult Edit(int? id)
         {
+  
+
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
+
             Tenant tenant = db.Tenants.Find(id);
             if (tenant == null)
             {
