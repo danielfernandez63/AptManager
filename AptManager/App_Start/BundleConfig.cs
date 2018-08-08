@@ -23,7 +23,7 @@ namespace AptManager
                       "~/Scripts/bootstrap.js"));
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
-                      "~/Content/bootstrap.css",
+                      "~/Content/bootstrapSlate.css",
                       "~/Content/site.css"));
         }
     }

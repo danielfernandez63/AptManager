@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="15.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <Import Project="..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.0\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props" Condition="Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.0\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" />
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
@@ -236,6 +236,9 @@
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\bootstrapSlate.css" />
+    <Content Include="Images\3rdwardwatershot.jpg" />
+    <Content Include="Images\bradford_beach.jpg" />
     <Content Include="Content\bootstrap-theme.css" />
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
@@ -244,6 +247,16 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="Images\3rdwardwater.jpg" />
+    <Content Include="Images\MPM.jpg" />
+    <Content Include="Images\oldarial.png" />
+    <Content Include="Images\oldpritzlaff.jpg" />
+    <Content Include="Images\Pritzlaff Wedding.jpg" />
+    <Content Include="Images\pritzlaff-lofts-milwaukee-wi-living-room.jpg" />
+    <Content Include="Images\Pritzlaff.jpg" />
+    <Content Include="Images\PritzlaffSide.png" />
+    <Content Include="Images\PZ.jpg" />
+    <Content Include="Images\Third_Ward_MKEa.jpg" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="ApplicationInsights.config">
@@ -316,14 +329,20 @@
     <Content Include="Views\Tenants\Edit.cshtml" />
     <Content Include="Views\Manager\Visitors.cshtml" />
     <Content Include="Views\Manager\Tenants.cshtml" />
-    <Content Include="Views\Workers\View.cshtml" />
+    <Content Include="Views\View.cshtml" />
     <Content Include="Views\MaintenanceOrders\IndexMyWorkOrder.cshtml" />
     <Content Include="Views\MaintenanceOrders\ConfirmComplete.cshtml" />
     <Content Include="Views\MaintenanceOrders\TenantWorkOrderSubmission.cshtml" />
+    <Content Include="Views\Visitors\Create.cshtml" />
+    <Content Include="Views\Visitors\Details.cshtml" />
+    <Content Include="Views\Visitors\Edit.cshtml" />
+    <Content Include="Views\Visitors\Index.cshtml" />
+    <Content Include="Views\Visitors\View.cshtml" />
+    <Content Include="Views\Workers\Edit.cshtml" />
+    <Content Include="Views\Home\Attractions.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Views\Visitors\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
