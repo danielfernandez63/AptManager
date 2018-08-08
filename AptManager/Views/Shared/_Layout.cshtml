@@ -17,21 +17,18 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                @Html.ActionLink("Pritzlaff Home", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+            @*    @Html.ActionLink("Pritzlaff Home", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })*@
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
                     <li>@Html.ActionLink("Attractions In The Area", "Attractions", "Home")</li>
                     <li>@Html.ActionLink("Why Choose Us?", "About", "Home")</li>
-                    <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
+                 @*   <li>@Html.ActionLink("Contact", "Contact", "Home")</li>*@
                     <li>@Html.ActionLink("WorkerHomeTesting", "Index", "Home")</li>
                     <li>@Html.ActionLink("ManagerHomeTesting", "Tenants", "Manager")</li>
-<<<<<<< HEAD
                     <li>@Html.ActionLink("TenantHomeTesting", "Details", "Tenants")</li>
-=======
-                    <li>@Html.ActionLink("TenantHomeTesting", "Index", "Tenants")</li>
                     <li>@Html.ActionLink("TwilioTesting", "TwilioTesting", "Home")</li>
->>>>>>> cd9315178ed8368ed4c1889745b1db93da6d9121
+
                 </ul>
                 @Html.Partial("_LoginPartial")
             </div>
