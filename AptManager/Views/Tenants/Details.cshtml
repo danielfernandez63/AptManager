@@ -1,21 +1,24 @@
 ﻿@model AptManager.Models.Tenant
 
 @{
-    ViewBag.Title = "Details";
+    ViewBag.Title = "Your Account Details";
 }
+<br />
+<br />
+<br />
 
-<h2>Details</h2>
+<h2> Your Account Details Below</h2>
 
 <div>
-    <h4>Tenant</h4>
+
     <hr />
     <dl class="dl-horizontal">
         <dt>
-            @Html.DisplayNameFor(model => model.ApplicationUserId)
+            @Html.DisplayNameFor(model => model.ApplicationUser)
         </dt>
-
+        
         <dd>
-            @Html.DisplayFor(model => model.ApplicationUserId)
+            @Html.DisplayFor(model => model.ApplicationUser)
         </dd>
 
         <dt>
@@ -70,5 +73,5 @@
 </div>
 <p>
     @Html.ActionLink("Edit", "Edit", new { id = Model.TenantId }) |
-    @Html.ActionLink("Back to List", "Index")
+   
 </p>

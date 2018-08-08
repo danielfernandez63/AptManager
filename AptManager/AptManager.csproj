@@ -46,6 +46,12 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Microsoft.IdentityModel.Logging, Version=1.1.2.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.IdentityModel.Logging.1.1.2\lib\net451\Microsoft.IdentityModel.Logging.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.IdentityModel.Tokens, Version=5.1.2.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.IdentityModel.Tokens.5.1.2\lib\net451\Microsoft.IdentityModel.Tokens.dll</HintPath>
+    </Reference>
     <Reference Include="Stripe.net, Version=17.8.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\Stripe.net.17.8.0\lib\net45\Stripe.net.dll</HintPath>
     </Reference>
@@ -53,9 +59,10 @@
     <Reference Include="System.Data" />
     <Reference Include="System.Data.Linq" />
     <Reference Include="System.Drawing" />
-    <Reference Include="System.Net.Http.Formatting, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <HintPath>..\packages\Microsoft.AspNet.WebApi.Client.5.2.3\lib\net45\System.Net.Http.Formatting.dll</HintPath>
+    <Reference Include="System.IdentityModel.Tokens.Jwt, Version=5.1.2.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.IdentityModel.Tokens.Jwt.5.1.2\lib\net451\System.IdentityModel.Tokens.Jwt.dll</HintPath>
     </Reference>
+    <Reference Include="System.Net" />
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
@@ -114,6 +121,9 @@
     </Reference>
     <Reference Include="Newtonsoft.Json">
       <HintPath>..\packages\Newtonsoft.Json.11.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="Twilio, Version=5.15.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Twilio.5.15.0\lib\net451\Twilio.dll</HintPath>
     </Reference>
     <Reference Include="WebGrease">
       <Private>True</Private>
@@ -223,9 +233,13 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201808081839258_initialmigration.cs" />
-    <Compile Include="Migrations\201808081839258_initialmigration.Designer.cs">
-      <DependentUpon>201808081839258_initialmigration.cs</DependentUpon>
+    <Compile Include="Migrations\201808082054077_FixedMaintananceMOdel.cs" />
+    <Compile Include="Migrations\201808082054077_FixedMaintananceMOdel.Designer.cs">
+      <DependentUpon>201808082054077_FixedMaintananceMOdel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201808082057202_ChangeDisplayNameAndNullibleProp.cs" />
+    <Compile Include="Migrations\201808082057202_ChangeDisplayNameAndNullibleProp.Designer.cs">
+      <DependentUpon>201808082057202_ChangeDisplayNameAndNullibleProp.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -335,13 +349,15 @@
     <Content Include="Views\Tenants\Edit.cshtml" />
     <Content Include="Views\Manager\Visitors.cshtml" />
     <Content Include="Views\Manager\Tenants.cshtml" />
-    <Content Include="Views\View.cshtml" />
+    <Content Include="Views\Workers\WorkerPortal.cshtml" />
     <Content Include="Views\MaintenanceOrders\IndexMyWorkOrder.cshtml" />
     <Content Include="Views\MaintenanceOrders\ConfirmComplete.cshtml" />
     <Content Include="Views\MaintenanceOrders\TenantWorkOrderSubmission.cshtml" />
     <Content Include="Views\Manager\VisitorsToTenants.cshtml" />
     <Content Include="Views\Manager\WorkOrders.cshtml" />
+    <Content Include="Views\Workers\Edit.cshtml" />
     <Content Include="Views\Home\Attractions.cshtml" />
+    <Content Include="Views\Home\TwilioTesting.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -360,8 +376,11 @@
     <Content Include="Scripts\jquery-3.3.1.min.map" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201808081839258_initialmigration.resx">
-      <DependentUpon>201808081839258_initialmigration.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201808082054077_FixedMaintananceMOdel.resx">
+      <DependentUpon>201808082054077_FixedMaintananceMOdel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201808082057202_ChangeDisplayNameAndNullibleProp.resx">
+      <DependentUpon>201808082057202_ChangeDisplayNameAndNullibleProp.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

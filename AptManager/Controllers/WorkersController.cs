@@ -7,6 +7,7 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using AptManager.Models;
+using Microsoft.AspNet.Identity;
 
 namespace AptManager.Controllers
 {
@@ -14,9 +15,15 @@ namespace AptManager.Controllers
     {
         ApplicationDbContext db = new ApplicationDbContext();
         // GET: Workers
-        public ActionResult Index()
+
+        public ActionResult WorkerPortal()
         {
-            return View("IndexMyWorkOrder","MaintenanceOrders");
+            return View();
+        }
+
+        public ActionResult RedirectToOrderIndex()
+        {
+            return RedirectToAction("IndexMyWorkOrder", "MaintenanceOrders", User.Identity.GetUserId());
         }
         // GET: HousingUnits/Details/5
         public ActionResult Details(int? id)
@@ -82,7 +89,7 @@ namespace AptManager.Controllers
             {
                 db.Entry(housingUnit).State = EntityState.Modified;
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("WorkerPortal");
             }
             return View(housingUnit);
         }
@@ -110,7 +117,7 @@ namespace AptManager.Controllers
             HousingUnit housingUnit = db.HousingUnits.Find(id);
             db.HousingUnits.Remove(housingUnit);
             db.SaveChanges();
-            return RedirectToAction("Index");
+            return RedirectToAction("WorkerPortal");
         }
 
         protected override void Dispose(bool disposing)
