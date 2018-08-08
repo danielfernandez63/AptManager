@@ -27,11 +27,11 @@ namespace AptManager.Controllers
 
             if (User.Identity.IsAuthenticated && User.IsInRole("Maintenance" ))
             {
-                var id = User.Identity.GetUserId();
+                var user = User.Identity.GetUserId();
 
-
-                var worker = db.Workers.Where(w => w.WorkerId.Equals(id)).First();
-                var maintenanceOrders = db.MaintenanceOrders.Include(m => m.WorkerId == worker.WorkerId && m.IsCompleted != true).ToList();
+                //b4bc8ccd - f6cd - 4346 - 8d69 - 83f33dcd7769
+                        var worker = db.Workers.Where(w => w.ApplicationUserId == user).FirstOrDefault();
+                var maintenanceOrders = db.MaintenanceOrders.Select(m => m.WorkerId == worker.WorkerId && m.IsCompleted != true).ToList();
                 return View(maintenanceOrders.ToList());
             }
             return View();
