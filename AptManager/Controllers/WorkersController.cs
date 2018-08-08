@@ -28,6 +28,25 @@ namespace AptManager.Controllers
             var myWorkOrders = db.MaintenanceOrders.Where(w => w.WorkerId == me.WorkerId);
             return View(db.MaintenanceOrders.ToList());
         }
+
+        public ActionResult CompleteTask(int? id)
+        {
+            if(id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            MaintenanceOrder maintenanceOrder = db.MaintenanceOrders.Find(id);
+            if(maintenanceOrder == null)
+            {
+                return HttpNotFound();
+            }
+            return View(maintenanceOrder);
+        }
+
+        public ActionResult CompleteTask()
+        {
+            return View();
+        }
         // GET: HousingUnits/Details/5
         public ActionResult Details(int? id)
         {
