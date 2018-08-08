@@ -42,9 +42,10 @@
                     @Html.DisplayFor(modelItem => item.Email)
                 </td>
                 <td>
-                    @Html.ActionLink("Edit", "Edit", new { id = item.UnitId }) |
-                    @Html.ActionLink("Details", "Details", new { id = item.UnitId }) |
-                    @Html.ActionLink("Visitors", "Visitors", new { id = item.UnitId })
+                    @Html.ActionLink("Edit Tenant Information", "EditTenant", new { id = item.TenantId }) |
+                    @Html.ActionLink("Details", "Details", new { id = item.TenantId }) |
+                    @Html.ActionLink("Visitors", "Visitors") |
+                    @Html.ActionLink("Work Orders", "WorkOrders")
                 </td>
             </tr>
         }
