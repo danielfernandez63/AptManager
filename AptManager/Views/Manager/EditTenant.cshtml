@@ -1,4 +1,4 @@
-﻿@model AptManager.Models.Manager
+﻿@model AptManager.Models.Tenant
 
 @{
     Layout = null;
@@ -9,7 +9,7 @@
 <html>
 <head>
     <meta name="viewport" content="width=device-width" />
-    <title>Edit</title>
+    <title>Edit Tenant Information</title>
 </head>
 <body>
     @Scripts.Render("~/bundles/jquery")
@@ -24,15 +24,16 @@
         <h4>MaintenanceOrder</h4>
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-        @Html.HiddenFor(model => model.ManagerId)
+        @Html.HiddenFor(model => model.TenantId)
+        @Html.HiddenFor(model => model.ApplicationUserId)
 
-        <div class="form-group">
+        @*<div class="form-group">
             @Html.LabelFor(model => model.ManagerId, "ManagerId", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.DropDownList("ManagerId", null, htmlAttributes: new { @class = "form-control" })
                 @Html.ValidationMessageFor(model => model.ManagerId, "", new { @class = "text-danger" })
             </div>
-        </div>
+        </div>*@
 
         <div class="form-group">
             @Html.LabelFor(model => model.FirstName, htmlAttributes: new { @class = "control-label col-md-2" })
@@ -62,6 +63,20 @@
             <div class="col-md-10">
                 @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.UnitId, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.UnitId, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.UnitId, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.BalanceDue, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.BalanceDue, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.BalanceDue, "", new { @class = "text-danger" })
             </div>
         </div>
         <div class="form-group">
