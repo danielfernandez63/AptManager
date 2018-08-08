@@ -316,12 +316,13 @@
     <Content Include="Views\Tenants\Edit.cshtml" />
     <Content Include="Views\Manager\Visitors.cshtml" />
     <Content Include="Views\Manager\Tenants.cshtml" />
-    <Content Include="Views\Workers\View.cshtml" />
+    <Content Include="Views\Workers\WorkerPortal.cshtml" />
     <Content Include="Views\MaintenanceOrders\IndexMyWorkOrder.cshtml" />
     <Content Include="Views\MaintenanceOrders\ConfirmComplete.cshtml" />
     <Content Include="Views\MaintenanceOrders\TenantWorkOrderSubmission.cshtml" />
     <Content Include="Views\Manager\VisitorsToTenants.cshtml" />
     <Content Include="Views\Manager\WorkOrders.cshtml" />
+    <Content Include="Views\Workers\Edit.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
