@@ -70,35 +70,29 @@ namespace AptManager.Controllers
                     return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
                 }
                 Visitor visitor = db.Visitors.Find(id);
-                VisitorViewModel model = new VisitorViewModel();
-                model.Visitor.VisitorId = visitor.VisitorId;
-                if (model == null)
+                if (visitor == null)
                 {
                     return HttpNotFound();
                 }
-                return View(model);
+                ViewBag.Roles = new SelectList(db.Roles.Where(u => u.Name.Contains("Tenant")).ToList(), "Name", "Name");
+                return View(visitor);
             }
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult VisitorsToTenants()
+        public ActionResult VisitorsToTenants([Bind(Include = "TenantId,ApplicationUserId,FirstName,LastName,PhoneNumber,Email")] Visitor model, HousingUnit housingUnit)
         {
-            VisitorViewModel model = new VisitorViewModel();
-            {
-                Visitor visitor = new Visitor();
-                Tenant tenant = new Tenant();
-            }
-            var user = (from v in db.Visitors where v.ApplicationUserId == model.Visitor.ApplicationUserId select v).FirstOrDefault();
+
+            //var user = (from v in db.Visitors where v.VisitorId == model.VisitorId select v).SingleOrDefault();
             Tenant newTenant = new Tenant();
-            newTenant.ApplicationUserId = model.Visitor.ApplicationUserId;
-            newTenant.FirstName = model.Visitor.FirstName;
-            newTenant.LastName = model.Visitor.LastName;
-            newTenant.PhoneNumber = model.Visitor.PhoneNumber;
-            newTenant.Email = model.Visitor.Email;
-            newTenant.UnitId = model.Tenant.UnitId;
+            newTenant.ApplicationUserId = model.ApplicationUserId;
+            newTenant.FirstName = model.FirstName;
+            newTenant.LastName = model.LastName;
+            newTenant.PhoneNumber = model.PhoneNumber;
+            newTenant.Email = model.Email;
             db.Tenants.Add(newTenant);
-            db.Visitors.Remove(user);
+            //db.Visitors.Remove(user);
             db.SaveChanges();
             return RedirectToAction("Visitors", "Manager");
         }
@@ -180,12 +174,12 @@ namespace AptManager.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            HousingUnit housingUnit = db.HousingUnits.Find(id);
-            if (housingUnit == null)
+            Visitor visitor = db.Visitors.Find(id);
+            if ( visitor == null)
             {
                 return HttpNotFound();
             }
-            return View(housingUnit);
+            return View(visitor);
         }
 
         // POST: HousingUnits/Delete/5
@@ -193,10 +187,10 @@ namespace AptManager.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            HousingUnit housingUnit = db.HousingUnits.Find(id);
-            db.HousingUnits.Remove(housingUnit);
+            Visitor visitor = db.Visitors.Find(id);
+            db.Visitors.Remove(visitor);
             db.SaveChanges();
-            return RedirectToAction("Index");
+            return RedirectToAction("Visitors");
         }
 
         protected override void Dispose(bool disposing)
