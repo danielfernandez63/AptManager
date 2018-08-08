@@ -173,6 +173,7 @@ namespace AptManager.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
+
             MaintenanceOrder maintenanceOrder = db.MaintenanceOrders.Find(id);
             if (maintenanceOrder == null)
             {

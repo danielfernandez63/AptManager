@@ -7,13 +7,13 @@ namespace AptManager.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.2.0-61023")]
-    public sealed partial class updatedatabase : IMigrationMetadata
+    public sealed partial class configuredUserRoles : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(updatedatabase));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(configuredUserRoles));
         
         string IMigrationMetadata.Id
         {
-            get { return "201808071936177_updatedatabase"; }
+            get { return "201808081405016_configuredUserRoles"; }
         }
         
         string IMigrationMetadata.Source

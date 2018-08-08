@@ -7,13 +7,13 @@ namespace AptManager.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.2.0-61023")]
-    public sealed partial class Seededmodel : IMigrationMetadata
+    public sealed partial class SeedingDataBase : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(Seededmodel));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(SeedingDataBase));
         
         string IMigrationMetadata.Id
         {
-            get { return "201808072023519_Seeded-model"; }
+            get { return "201808081333411_SeedingDataBase"; }
         }
         
         string IMigrationMetadata.Source
