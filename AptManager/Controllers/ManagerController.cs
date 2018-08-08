@@ -70,25 +70,33 @@ namespace AptManager.Controllers
                     return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
                 }
                 Visitor visitor = db.Visitors.Find(id);
-                if (visitor == null)
+                VisitorViewModel model = new VisitorViewModel();
+                model.Visitor.VisitorId = visitor.VisitorId;
+                if (model == null)
                 {
                     return HttpNotFound();
                 }
-                return View(visitor);
+                return View(model);
             }
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult VisitorsToTenants(Visitor visitor, Tenant tenant)
+        public ActionResult VisitorsToTenants()
         {
-            var user = (from v in db.Visitors where v.ApplicationUserId == visitor.ApplicationUserId select v).FirstOrDefault();
+            VisitorViewModel model = new VisitorViewModel();
+            {
+                Visitor visitor = new Visitor();
+                Tenant tenant = new Tenant();
+            }
+            var user = (from v in db.Visitors where v.ApplicationUserId == model.Visitor.ApplicationUserId select v).FirstOrDefault();
             Tenant newTenant = new Tenant();
-            newTenant.ApplicationUserId = user.ApplicationUserId;
-            newTenant.FirstName = user.FirstName;
-            newTenant.LastName = user.LastName;
-            newTenant.PhoneNumber = user.PhoneNumber;
-            newTenant.Email = user.Email;
+            newTenant.ApplicationUserId = model.Visitor.ApplicationUserId;
+            newTenant.FirstName = model.Visitor.FirstName;
+            newTenant.LastName = model.Visitor.LastName;
+            newTenant.PhoneNumber = model.Visitor.PhoneNumber;
+            newTenant.Email = model.Visitor.Email;
+            newTenant.UnitId = model.Tenant.UnitId;
             db.Tenants.Add(newTenant);
             db.Visitors.Remove(user);
             db.SaveChanges();
