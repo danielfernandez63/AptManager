@@ -28,6 +28,8 @@ namespace AptManager.Controllers
             if (User.Identity.IsAuthenticated && User.IsInRole("Maintenance" ))
             {
                 var id = User.Identity.GetUserId();
+
+
                 var worker = db.Workers.Where(w => w.WorkerId.Equals(id)).First();
                 var maintenanceOrders = db.MaintenanceOrders.Include(m => m.WorkerId == worker.WorkerId && m.IsCompleted != true).ToList();
                 return View(maintenanceOrders.ToList());
