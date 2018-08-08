@@ -82,13 +82,21 @@ namespace AptManager.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult VisitorsToTenants(Visitor visitor, Tenant tenant)
         {
+            VisitorViewModel model = new VisitorViewModel();
             var user = (from v in db.Visitors where v.ApplicationUserId == visitor.ApplicationUserId select v).FirstOrDefault();
             Tenant newTenant = new Tenant();
-            newTenant.ApplicationUserId = user.ApplicationUserId;
-            newTenant.FirstName = user.FirstName;
-            newTenant.LastName = user.LastName;
-            newTenant.PhoneNumber = user.PhoneNumber;
-            newTenant.Email = user.Email;
+            model.VisitorId = user.VisitorId;
+            model.ApplicationUserId = user.ApplicationUserId;
+            model.FirstName = user.FirstName;
+            model.LastName = user.LastName;
+            model.Email = user.Email;
+            model.PhoneNumber = user.PhoneNumber;
+            newTenant.ApplicationUserId = model.ApplicationUserId;
+            newTenant.FirstName = model.FirstName;
+            newTenant.LastName = model.LastName;
+            newTenant.PhoneNumber = model.PhoneNumber;
+            newTenant.Email = model.Email;
+            newTenant.UnitId = model.UnitId;
             db.Tenants.Add(newTenant);
             db.Visitors.Remove(user);
             db.SaveChanges();
