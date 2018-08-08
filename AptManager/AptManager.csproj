@@ -210,6 +210,14 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201808082054077_FixedMaintananceMOdel.cs" />
+    <Compile Include="Migrations\201808082054077_FixedMaintananceMOdel.Designer.cs">
+      <DependentUpon>201808082054077_FixedMaintananceMOdel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201808082057202_ChangeDisplayNameAndNullibleProp.cs" />
+    <Compile Include="Migrations\201808082057202_ChangeDisplayNameAndNullibleProp.Designer.cs">
+      <DependentUpon>201808082057202_ChangeDisplayNameAndNullibleProp.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\HousingUnit.cs" />
@@ -340,6 +348,14 @@
     <None Include="packages.config" />
     <Content Include="Scripts\jquery-3.3.1.slim.min.map" />
     <Content Include="Scripts\jquery-3.3.1.min.map" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201808082054077_FixedMaintananceMOdel.resx">
+      <DependentUpon>201808082054077_FixedMaintananceMOdel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201808082057202_ChangeDisplayNameAndNullibleProp.resx">
+      <DependentUpon>201808082057202_ChangeDisplayNameAndNullibleProp.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
