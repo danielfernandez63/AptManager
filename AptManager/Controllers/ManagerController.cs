@@ -115,7 +115,7 @@ namespace AptManager.Controllers
         public ActionResult LateRentMessage()
         {
             PartialView("");
-            return 
+            return View(); 
         }
 
         public ActionResult TenantNotification(int? id)

@@ -231,9 +231,9 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201808090217394_newdatabase.cs" />
-    <Compile Include="Migrations\201808090217394_newdatabase.Designer.cs">
-      <DependentUpon>201808090217394_newdatabase.cs</DependentUpon>
+    <Compile Include="Migrations\201808091433177_newdatabase.cs" />
+    <Compile Include="Migrations\201808091433177_newdatabase.Designer.cs">
+      <DependentUpon>201808091433177_newdatabase.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -357,7 +357,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Views\Attractions\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
@@ -373,8 +372,8 @@
     <Content Include="Scripts\jquery-3.3.1.min.map" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201808090217394_newdatabase.resx">
-      <DependentUpon>201808090217394_newdatabase.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201808091433177_newdatabase.resx">
+      <DependentUpon>201808091433177_newdatabase.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

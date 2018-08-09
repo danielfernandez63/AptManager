@@ -13,7 +13,7 @@ namespace AptManager.Migrations
         
         string IMigrationMetadata.Id
         {
-            get { return "201808090217394_newdatabase"; }
+            get { return "201808091433177_newdatabase"; }
         }
         
         string IMigrationMetadata.Source

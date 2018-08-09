@@ -26,21 +26,30 @@ namespace AptManager.Controllers
             request.Term = "Restaurants, Bars";
             request.MaxResults = 10;
             request.Radius = 1610;
-            request.OpenNow = true;
             var client = new Yelp.Api.Client("d76-ipn8brnI7BsOm7yk_X0Xa7-RTXpO8v4G93RcqMA9FRT3AdFbGsV8MkvAW6Q9ww-0YikIX7lDNgHfZ-6yDrfgG28FrU3PAj4TTUD1YT9mJO-hkAxqrKl-IzxrW3Yx");
             var results = await client.SearchBusinessesAllAsync(request);
 
-            List<double> latitude = new List<double>();
-            latitude.Add(results.Businesses[0].Coordinates.Latitude);
+            //List<double> coordinates = new List<double>();
+            //for (int i = 0; i < testRequest.MaxResults; i++) {
+            //    coordinates.Add(results.Businesses[i].Coordinates.Latitude);
+            //    coordinates.Add(results.Businesses[i].Coordinates.Longitude);
+            //}
+            var name = results.Businesses[1].Name.ToString();
 
-            var tupleList = new List<Tuple<double, double>>
-            {
-                Tuple.Create( results.Businesses[0].Coordinates.Latitude, results.Businesses[0].Coordinates.Latitude ),
-                Tuple.Create( results.Businesses[1].Coordinates.Latitude, results.Businesses[1].Coordinates.Latitude ),
-                Tuple.Create( results.Businesses[2].Coordinates.Latitude, results.Businesses[2].Coordinates.Latitude )
-            };
+            ViewBag.CompanyName = name;
 
-            return View(tupleList);
+            //GoogleSigned.AssignAllServices(new GoogleSigned("AIzaSyBMyOWThQk4370WKi0Ms3kWhqIgBFYquHw"));
+            //latitude.Add(results.Businesses[0].Coordinates.Latitude);
+            //for (int i = 0; i < request.MaxResults; i++)
+            //{
+            //    var tupleList = new List<Tuple<double, double>>
+            //   {
+            //       Tuple.Create( results.Businesses[i].Coordinates.Latitude, results.Businesses[i].Coordinates.Latitude )
+            //   };
+            //}
+
+
+            return View(name);
         }
 
         public ActionResult TwilioTesting()
