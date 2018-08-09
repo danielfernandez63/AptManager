@@ -11,9 +11,8 @@ namespace AptManager.Controllers
     {
         public void TwilioMessage(string phoneNumber, string messageText)
         {
-            //TEST CREDENTIALS
-            const string accountSid = "AC915abf9cbec69d0a7262a3f3a5ee2275";
-            const string authToken = "af2dd04276e788fef20f5fce7e700af6";
+            string accountSid = APIKeys.GetAccountSid();
+            string authToken = APIKeys.GetAuthToken();
 
             TwilioClient.Init(accountSid, authToken);
 
@@ -22,8 +21,6 @@ namespace AptManager.Controllers
                 from: new Twilio.Types.PhoneNumber("+19206266861"),
                 to: new Twilio.Types.PhoneNumber("+" + phoneNumber)
                 );
-            //return RedirectToAction("TwilioTesting");
-
         }
     }
 }
