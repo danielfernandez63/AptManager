@@ -14,6 +14,7 @@ namespace AptManager.Controllers
     public class ManagerController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();
+       
         // GET: Manager
 
         public ActionResult Index()
@@ -48,7 +49,6 @@ namespace AptManager.Controllers
                 }
                 ViewBag.Workers = new SelectList(db.Workers.OrderBy(w => w.WorkerId).ToList(), "Id");
                 return View(order);
-            
         }
 
         [HttpPost]
@@ -58,7 +58,7 @@ namespace AptManager.Controllers
             var workOrder = (from w in db.MaintenanceOrders where w.OrderId == order.OrderId select w).SingleOrDefault();
             var assignedWorker = (from a in db.Workers where a.WorkerId == worker.WorkerId select a).SingleOrDefault();
             workOrder.WorkerId = assignedWorker.WorkerId;
-            db.Entry(workOrder).State = EntityState.Modified;
+            db.MaintenanceOrders.Add(workOrder);
             db.SaveChanges();
             return RedirectToAction("WorkOrders", "Manager");
         }
@@ -113,10 +113,12 @@ namespace AptManager.Controllers
             return View(housingUnit);
         }
 
-        public ActionResult LateRentMessage()
+        //VERY MVP, NEEDS A LOT MORE USER INPUT OPTIONS. WANT TO ADD PARTIAL VIEW
+        public ActionResult LateRentMessage(string phoneNumber, int balance)
         {
-            PartialView("");
-            return View();
+            string messageText = $"Your past due rent balance is: {balance}. Please remit payment at your earliest convenience";
+            TwilioNotification.TwilioMessage(phoneNumber, messageText);
+            return View(); 
         }
 
         public ActionResult TenantNotification(int? id)

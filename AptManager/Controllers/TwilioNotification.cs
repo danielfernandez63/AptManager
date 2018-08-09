@@ -7,9 +7,9 @@ using Twilio.Rest.Api.V2010.Account;
 
 namespace AptManager.Controllers
 {
-    public class TwilioNotification
+    public static class TwilioNotification
     {
-        public void TwilioMessage(string phoneNumber, string messageText)
+        public static void TwilioMessage(string phoneNumber, string messageText)
         {
             
             string accountSid = APIKeys.GetAccountSid();
@@ -22,6 +22,12 @@ namespace AptManager.Controllers
                 from: new Twilio.Types.PhoneNumber("+19206266861"),
                 to: new Twilio.Types.PhoneNumber("+" + phoneNumber)
                 );
+        }
+
+        public static string GetManagerNumber()
+        {
+            string ManagerNumber = "16086306751";
+            return ManagerNumber;
         }
     }
 }
