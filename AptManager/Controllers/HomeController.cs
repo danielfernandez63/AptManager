@@ -5,6 +5,9 @@ using System.Web;
 using System.Web.Mvc;
 using Twilio;
 using Twilio.Rest.Api.V2010.Account;
+using GoogleMapsApi;
+using GoogleMapsApi.Entities.Directions.Request;
+using Yelp;
 
 namespace AptManager.Controllers
 {
@@ -24,34 +27,28 @@ namespace AptManager.Controllers
             request.MaxResults = 10;
             request.Radius = 1610;
             request.OpenNow = true;
-
-
             var client = new Yelp.Api.Client("d76-ipn8brnI7BsOm7yk_X0Xa7-RTXpO8v4G93RcqMA9FRT3AdFbGsV8MkvAW6Q9ww-0YikIX7lDNgHfZ-6yDrfgG28FrU3PAj4TTUD1YT9mJO-hkAxqrKl-IzxrW3Yx");
             var results = await client.SearchBusinessesAllAsync(request);
-            return View(results);
+
+            List<double> latitude = new List<double>();
+            latitude.Add(results.Businesses[0].Coordinates.Latitude);
+
+            var tupleList = new List<Tuple<double, double>>
+            {
+                Tuple.Create( results.Businesses[0].Coordinates.Latitude, results.Businesses[0].Coordinates.Latitude ),
+                Tuple.Create( results.Businesses[1].Coordinates.Latitude, results.Businesses[1].Coordinates.Latitude ),
+                Tuple.Create( results.Businesses[2].Coordinates.Latitude, results.Businesses[2].Coordinates.Latitude )
+            };
+
+            return View(tupleList);
         }
 
         public ActionResult TwilioTesting()
         {
             return View();
         }
-
-        public ActionResult TwilioMessage()
-        {
-            //TEST CREDENTIALS
-            const string accountSid = "AC2e158f49c90fb7b1447425bc7e2707f1";
-            const string authToken = "2a297079bf5f2b20bd93d0849396c99e";
-
-            TwilioClient.Init(accountSid, authToken);
-
-            var message = MessageResource.Create(
-                body: "This is the ship that made the Kessel Run in fourteen parsecs?",
-                from: new Twilio.Types.PhoneNumber("+15005550006"),
-                to: new Twilio.Types.PhoneNumber("+8473877981")
-                );
-                return RedirectToAction("TwilioTesting");
-        }
-        
+        //[HttpPost]
+       
 
         public ActionResult About()
         {
