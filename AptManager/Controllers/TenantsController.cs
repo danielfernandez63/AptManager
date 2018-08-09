@@ -43,6 +43,22 @@ namespace AptManager.Controllers
          
         }
 
+        // GET: HousingUnits/Details/5
+        public ActionResult TicketComplete(int? id)
+        {
+            var user = User.Identity.GetUserId();
+
+            var loggedInUser = db.Tenants.Where(c => c.ApplicationUserId == user).Single();
+
+
+            if (loggedInUser.ApplicationUserId == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            return View(loggedInUser);
+
+        }
+
         // GET: HousingUnits/Create
         public ActionResult Create()
         {
@@ -65,6 +81,31 @@ namespace AptManager.Controllers
             }
 
             return View(tenant);
+        }
+
+        // GET: MaintenanceOrders/TenantSubmission
+        public ActionResult FileReport()
+        {
+            ViewBag.UnitId = new SelectList(db.HousingUnits, "UnitId", "UnitId");
+            return View();
+        }
+
+        // POST: MaintenanceOrders/Create
+        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
+        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult FileReport([Bind(Include = "OrderId,UnitId,Name,Description,DueDate")] MaintenanceOrder maintenanceOrder)
+        {
+            if (ModelState.IsValid)
+            {
+                db.MaintenanceOrders.Add(maintenanceOrder);
+                db.SaveChanges();
+                return RedirectToAction("TicketComplete");
+            }
+
+            ViewBag.UnitId = new SelectList(db.HousingUnits, "UnitId", "UnitId", maintenanceOrder.UnitId);
+            return View(maintenanceOrder);
         }
 
         // GET: HousingUnits/Edit/5
@@ -90,15 +131,25 @@ namespace AptManager.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "UnitId,MonthlyRent,Bedrooms,SquareFootage,OutdoorAccess")] HousingUnit housingUnit)
+        public ActionResult Edit(/*[Bind(Include = "UnitId,MonthlyRent,Bedrooms,SquareFootage,OutdoorAccess")]*/ Tenant tenant)
         {
+
+            var user = User.Identity.GetUserId();
+
+            var loggedInUser = db.Tenants.Where(c => c.ApplicationUserId == user).Single();
+
             if (ModelState.IsValid)
             {
-                db.Entry(housingUnit).State = EntityState.Modified;
+                loggedInUser.FirstName = tenant.FirstName;
+                loggedInUser.LastName = tenant.LastName;
+                loggedInUser.Email = tenant.Email;
+                loggedInUser.PhoneNumber = tenant.PhoneNumber;
+
+                db.Entry(loggedInUser).State = EntityState.Modified;
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("Details");
             }
-            return View(housingUnit);
+            return View(tenant);
         }
 
         // GET: HousingUnits/Delete/5

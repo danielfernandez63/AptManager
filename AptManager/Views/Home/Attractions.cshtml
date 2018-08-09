@@ -8,39 +8,19 @@
         <th>
             @Html.DisplayNameFor(model => model)
         </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Bedrooms)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.SquareFootage)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.OutdoorAccess)
-        </th>
+
         <th></th>
     </tr>
 
     @foreach (var item in Model)
     {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.MonthlyRent)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Bedrooms)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.SquareFootage)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.OutdoorAccess)
-            </td>
-            <td>
-                @Html.ActionLink("Edit", "Edit", new { id = item.UnitId }) |
-                @Html.ActionLink("Details", "Details", new { id = item.UnitId }) |
-                @Html.ActionLink("Delete", "Delete", new { id = item.UnitId })
-            </td>
-        </tr>
+        <text>
+            var marker = new google.maps.Marker({
+            map: map,
+            position: { lat: @item.item1, lng: @item. },
+            title: 'Hello World!'
+            });
+        </text>
     }
 
 </table>
