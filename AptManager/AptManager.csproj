@@ -231,10 +231,6 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201808090217394_newdatabase.cs" />
-    <Compile Include="Migrations\201808090217394_newdatabase.Designer.cs">
-      <DependentUpon>201808090217394_newdatabase.cs</DependentUpon>
-    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\HousingUnit.cs" />
@@ -354,6 +350,10 @@
     <Content Include="Views\Home\TwilioTesting.cshtml" />
     <Content Include="Views\Tenants\FileReport.cshtml" />
     <Content Include="Views\Tenants\TicketComplete.cshtml" />
+    <Content Include="Views\Tenants\PayRent.cshtml" />
+    <Content Include="Views\Shared\_LayoutManager.cshtml" />
+    <Content Include="Views\Shared\_LayoutTenant.cshtml" />
+    <Content Include="Views\Shared\_LayoutWorker.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -371,11 +371,6 @@
     <None Include="packages.config" />
     <Content Include="Scripts\jquery-3.3.1.slim.min.map" />
     <Content Include="Scripts\jquery-3.3.1.min.map" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Migrations\201808090217394_newdatabase.resx">
-      <DependentUpon>201808090217394_newdatabase.cs</DependentUpon>
-    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
