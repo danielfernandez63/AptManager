@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="15.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <Import Project="..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.0\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props" Condition="Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.0\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" />
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
@@ -351,14 +351,12 @@
     <Content Include="Views\Manager\TenantNotification.cshtml" />
     <Content Include="Views\Tenants\FileReport.cshtml" />
     <Content Include="Views\Tenants\TicketComplete.cshtml" />
-    <Content Include="Views\Manager\AssignWorkOrder.cshtml" />
-    <Content Include="Views\Tenants\TenantNotification.cshtml" />
-    <Content Include="Views\Workers\WorkOrderList.cshtml" />
-    <Content Include="Views\Workers\CompleteTask.cshtml" />
+
     <Content Include="Views\Tenants\PayRent.cshtml" />
     <Content Include="Views\Shared\_LayoutManager.cshtml" />
     <Content Include="Views\Shared\_LayoutTenant.cshtml" />
     <Content Include="Views\Shared\_LayoutWorker.cshtml" />
+
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

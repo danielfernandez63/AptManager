@@ -1,26 +1,42 @@
 ﻿@{
-    ViewBag.Title = "Attractions In Your Area!";
+    ViewBag.Title = "Attractions";
 }
 <h2>@ViewBag.Title</h2>
 
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model)
-        </th>
+@model IEnumerable<string>
 
-        <th></th>
-    </tr>
+<p>
+    Name: @ViewBag.CompanyName
+</p>
 
-    @foreach (var item in Model)
-    {
-        <text>
-            var marker = new google.maps.Marker({
-            map: map,
-            position: { lat: @item.item1, lng: @item. },
-            title: 'Hello World!'
-            });
-        </text>
-    }
+@*@foreach (var item in Model)
+{
+    @Html.DisplayFor(modelItem => item);
+}*@
 
-</table>
+@*<script>
+
+
+    function initMap() {
+        var myLatLng = { lat: 48.584715, lng: 7.748556 };
+
+         Create a map object and specify the DOM element
+         for display.
+        var map = new google.maps.Map(document.getElementById('carte'), {
+            center: myLatLng,
+            zoom: 14
+        });
+
+         Create a marker and set its position.
+
+        @foreach(var item in Model){
+             <text>
+                var marker = new google.maps.Marker({
+                  map: map,
+                  position: { lat: @item, lng: @item },
+                  title: 'Hello World!'
+                });
+            </text>
+        }
+
+    }</script>*@
