@@ -23,5 +23,11 @@ namespace AptManager.Controllers
                 to: new Twilio.Types.PhoneNumber("+" + phoneNumber)
                 );
         }
+
+        public static string GetManagerNumber()
+        {
+            string ManagerNumber = "16086306751";
+            return ManagerNumber;
+        }
     }
 }
