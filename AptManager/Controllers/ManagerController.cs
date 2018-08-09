@@ -116,14 +116,11 @@ namespace AptManager.Controllers
         //VERY MVP, NEEDS A LOT MORE USER INPUT OPTIONS. WANT TO ADD PARTIAL VIEW
         public ActionResult LateRentMessage(string phoneNumber, int balance)
         {
-<<<<<<< HEAD
-            PartialView("");
-            return View();
-=======
+
             string messageText = $"Your past due rent balance is: {balance}. Please remit payment at your earliest convenience";
             TwilioNotification.TwilioMessage(phoneNumber, messageText);
             return View(); 
->>>>>>> b7add53d0c5e7717a4f89f3fe5ae7711d4b43aa1
+
         }
 
         public ActionResult TenantNotification(int? id)
