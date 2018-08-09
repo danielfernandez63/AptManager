@@ -62,13 +62,15 @@ namespace AptManager.Controllers
             if (ModelState.IsValid)
             {
                 int OrderFixedId = order.OrderId;
-
+                
                 var workOrder = db.MaintenanceOrders.Where(ord => ord.OrderId == OrderFixedId).Single();
-
+                
                 workOrder.WorkerId = order.WorkerId;
 
                 db.Entry(workOrder).State = EntityState.Modified;
                 db.SaveChanges();
+                TwilioNotification.NotifyWorkerOfReport(workOrder);
+
                 return RedirectToAction("WorkOrders");                    
             }
 

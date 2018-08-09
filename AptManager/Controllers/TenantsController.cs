@@ -97,14 +97,14 @@ namespace AptManager.Controllers
 
             else if (dueDate == DateTime.Now.Day)
             {
-                ChargeRent(tenant);
+                ChargeRentBalance(tenant);
             }
             
             return RedirectToAction("");
 
         }
 
-        public void ChargeRent(Tenant tenant)
+        public void ChargeRentBalance(Tenant tenant)
         {
             var unit = db.HousingUnits.Find(tenant.HousingUnit.UnitId);
             Tenant updatedTenant = db.Tenants.Find(tenant.TenantId);

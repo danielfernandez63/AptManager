@@ -1,4 +1,5 @@
-﻿using System;
+﻿using AptManager.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -22,6 +23,12 @@ namespace AptManager.Controllers
                 from: new Twilio.Types.PhoneNumber("+19206266861"),
                 to: new Twilio.Types.PhoneNumber("+" + phoneNumber)
                 );
+        }
+
+        public static void NotifyWorkerOfReport(MaintenanceOrder order)
+        {
+            var message = $"{order.Worker.FirstName}, you have had a new work order assigned to you. Please visit the webpage to view this order";
+            TwilioMessage(order.Worker.PhoneNumber, message);
         }
 
         public static string GetManagerNumber()
