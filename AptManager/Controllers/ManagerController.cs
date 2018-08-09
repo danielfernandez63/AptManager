@@ -14,6 +14,7 @@ namespace AptManager.Controllers
     public class ManagerController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();
+       
         // GET: Manager
 
         public ActionResult Index()
@@ -35,27 +36,27 @@ namespace AptManager.Controllers
             return View(db.MaintenanceOrders.ToList());
         }
 
-        public ActionResult AssignWorkOrder(int? id)
+        public ActionResult AssignWorkOrder(int? id, Worker worker)
         {
                 if (id == null)
                 {
                     return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
                 }
-                Worker worker = db.Workers.Find(id);
-                if (worker == null)
+                MaintenanceOrder order = db.MaintenanceOrders.Find(id);
+                if (order == null)
                 {
                     return HttpNotFound();
                 }
-                return View(worker);
-            
+                ViewBag.Workers = new SelectList(db.Workers.OrderBy(w => w.WorkerId).ToList(), "Id");
+                return View(order);
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult AssignWorkOrder(Worker worker, MaintenanceOrder order)
         {
-            var workOrder = (from w in db.MaintenanceOrders where w.OrderId == order.OrderId select w).FirstOrDefault();
-            var assignedWorker = (from a in db.Workers where a.WorkerId == worker.WorkerId select a).FirstOrDefault();
+            var workOrder = (from w in db.MaintenanceOrders where w.OrderId == order.OrderId select w).SingleOrDefault();
+            var assignedWorker = (from a in db.Workers where a.WorkerId == worker.WorkerId select a).SingleOrDefault();
             workOrder.WorkerId = assignedWorker.WorkerId;
             db.MaintenanceOrders.Add(workOrder);
             db.SaveChanges();
@@ -112,10 +113,17 @@ namespace AptManager.Controllers
             return View(housingUnit);
         }
 
-        public ActionResult LateRentMessage()
+        //VERY MVP, NEEDS A LOT MORE USER INPUT OPTIONS. WANT TO ADD PARTIAL VIEW
+        public ActionResult LateRentMessage(string phoneNumber, int balance)
         {
+<<<<<<< HEAD
             PartialView("");
             return View();
+=======
+            string messageText = $"Your past due rent balance is: {balance}. Please remit payment at your earliest convenience";
+            TwilioNotification.TwilioMessage(phoneNumber, messageText);
+            return View(); 
+>>>>>>> b7add53d0c5e7717a4f89f3fe5ae7711d4b43aa1
         }
 
         public ActionResult TenantNotification(int? id)

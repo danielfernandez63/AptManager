@@ -26,7 +26,7 @@ namespace AptManager.Controllers
             var currentWorker = User.Identity.GetUserId();
             Worker me = db.Workers.Where(m => m.ApplicationUserId == currentWorker).Single();
             var myWorkOrders = db.MaintenanceOrders.Where(w => w.WorkerId == me.WorkerId);
-            return View(db.MaintenanceOrders.ToList());
+            return View(myWorkOrders.ToList());
         }
 
         public ActionResult CompleteTask(int? id)

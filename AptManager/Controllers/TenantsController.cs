@@ -58,7 +58,14 @@ namespace AptManager.Controllers
             return View(loggedInUser);
 
         }
+        public ActionResult WorkOrderMessage(string phoneNumber, int UnitId)
+        {
+            string messageText = $"A maintenance report has been submitted for unit number: {UnitId}";
+            TwilioNotification.TwilioMessage(phoneNumber, messageText);
+            return View();
+        }
 
+<<<<<<< HEAD
         // GET: HousingUnits/Details/5
         public ActionResult PayRent(int? id)
         {
@@ -77,6 +84,20 @@ namespace AptManager.Controllers
 
         // GET: HousingUnits/Create
         public ActionResult Create()
+=======
+        //public ActionResult ManagerNotification(int? id)
+        //{
+        //    var user = db.Tenants.Find(id);
+
+        //    if (user.ApplicationUserId == null)
+        //    {
+        //        return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+        //    }
+        //    return RedirectToAction("WorkOrderMessage", );
+        //}
+            // GET: HousingUnits/Create
+            public ActionResult Create()
+>>>>>>> b7add53d0c5e7717a4f89f3fe5ae7711d4b43aa1
         {
             return View();
         }
@@ -117,6 +138,8 @@ namespace AptManager.Controllers
             {
                 db.MaintenanceOrders.Add(maintenanceOrder);
                 db.SaveChanges();
+                var manangerNumber = TwilioNotification.GetManagerNumber();
+                WorkOrderMessage(manangerNumber, maintenanceOrder.UnitId);
                 return RedirectToAction("TicketComplete");
             }
 

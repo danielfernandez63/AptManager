@@ -348,12 +348,15 @@
     <Content Include="Views\Workers\Edit.cshtml" />
     <Content Include="Views\Home\Attractions.cshtml" />
     <Content Include="Views\Home\TwilioTesting.cshtml" />
+    <Content Include="Views\Manager\TenantNotification.cshtml" />
     <Content Include="Views\Tenants\FileReport.cshtml" />
     <Content Include="Views\Tenants\TicketComplete.cshtml" />
+
     <Content Include="Views\Tenants\PayRent.cshtml" />
     <Content Include="Views\Shared\_LayoutManager.cshtml" />
     <Content Include="Views\Shared\_LayoutTenant.cshtml" />
     <Content Include="Views\Shared\_LayoutWorker.cshtml" />
+
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
