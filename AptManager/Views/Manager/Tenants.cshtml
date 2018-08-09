@@ -9,6 +9,7 @@
     <title>Active Tenants</title>
 </head>
 <body>
+    <button >    </button>
     <table class="table">
         <tr>
             <th>
@@ -26,34 +27,43 @@
             <th>
                 @Html.DisplayNameFor(model => model.UnitId)
             </th>
+            <th>
+                @Html.DisplayNameFor(model => model.BalanceDue)
+            </th>
             <th></th>
         </tr>
 
         @foreach (var item in Model)
         {
-            <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => item.FirstName)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.LastName)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.PhoneNumber)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Email)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.UnitId)
-                </td>
-                <td>
-                    @Html.ActionLink("Edit Tenant Information", "EditTenant", new { id = item.TenantId }) |
-                    @Html.ActionLink("Details", "Details", new { id = item.TenantId }) |
-                    @Html.ActionLink("Visitors", "Visitors") |
-                    @Html.ActionLink("Work Orders", "WorkOrders")
-                </td>
-            </tr>
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.FirstName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.LastName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PhoneNumber)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Email)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.UnitId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.BalanceDue)
+            </td>
+            <td>
+                @Html.ActionLink("Notify", "TenantNotification", new { id = item.TenantId })
+            </td>
+            <td>
+                @Html.ActionLink("Edit Tenant Information", "EditTenant", new { id = item.TenantId }) |
+                @Html.ActionLink("Details", "Details", new { id = item.TenantId }) |
+                @Html.ActionLink("Visitors", "Visitors") |
+                @Html.ActionLink("Work Orders", "WorkOrders")
+            </td>
+        </tr>
         }
 
     </table>
