@@ -43,6 +43,19 @@ namespace AptManager.Controllers
             return View(maintenanceOrder);
         }
 
+        public Tenant GetTenantFromUnitId(int UnitId)
+        {
+            var tenant = db.Tenants.Where(t => t.HousingUnit.UnitId == UnitId).SingleOrDefault();
+            return tenant;
+        }
+
+        public void NotifyTenantOrderComplete(MaintenanceOrder order)
+        {
+            var tenant = GetTenantFromUnitId(order.UnitId);
+            string message = $"Dear, {tenant.FirstName} {tenant.LastName} your work order titled: {order.Name} has been completed";
+            TwilioNotification.TwilioMessage(tenant.PhoneNumber, message);
+        }
+
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult CompleteTask(MaintenanceOrder order)
@@ -52,6 +65,7 @@ namespace AptManager.Controllers
             currentOrder.Description = order.Description;
             db.Entry(currentOrder).State = EntityState.Modified;
             db.SaveChanges();
+            NotifyTenantOrderComplete(currentOrder);
             return RedirectToAction("WorkOrderList", "Workers");
         }
         // GET: HousingUnits/Details/5

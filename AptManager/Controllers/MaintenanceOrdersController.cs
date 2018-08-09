@@ -164,7 +164,7 @@ namespace AptManager.Controllers
             MaintenanceOrder maintenanceOrder = db.MaintenanceOrders.Find(id);
             db.MaintenanceOrders.Remove(maintenanceOrder);
             db.SaveChanges();
-            return RedirectToAction("Index");
+            return RedirectToAction("WorkOrders", "Manager" );
         }
 
         public ActionResult ConfirmComplete(int? id)

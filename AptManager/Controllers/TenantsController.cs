@@ -82,7 +82,7 @@ namespace AptManager.Controllers
 
         }
 
-
+        
 
         public ActionResult ManagerNotification(int? id)
         {
