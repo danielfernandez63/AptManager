@@ -58,10 +58,10 @@
                 @Html.ActionLink("Notify", "TenantNotification", new { id = item.TenantId })
             </td>
             <td>
-                @Html.ActionLink("Edit Tenant Information", "EditTenant", new { id = item.TenantId }) |
-                @Html.ActionLink("Details", "Details", new { id = item.TenantId }) |
-                @Html.ActionLink("Visitors", "Visitors") |
-                @Html.ActionLink("Work Orders", "WorkOrders")
+                @Html.ActionLink("Edit Tenant Information", "EditTenant", new { id = item.TenantId }) &nbsp; &nbsp;
+                @Html.ActionLink("View Tenant Details", "Details", new { id = item.TenantId }) &nbsp; &nbsp;
+                @Html.ActionLink(" Accept Visitors", "Visitors") &nbsp; &nbsp;
+                @Html.ActionLink(" View Work Orders", "WorkOrders") &nbsp; &nbsp;
             </td>
         </tr>
         }

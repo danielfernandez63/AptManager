@@ -1,3 +1,26 @@
-﻿@{
+﻿@*@{
     Layout = "~/Views/Shared/_Layout.cshtml";
+}*@
+@{
+    var controller = HttpContext.Current.Request.RequestContext.RouteData.Values["Controller"].ToString();
+    string cLayout = "";
+    if (User.IsInRole("Manager"))
+    {
+        cLayout = "~/Views/Shared/_LayoutManager.cshtml";
+
+
+    }
+    else if (User.IsInRole("Tenant"))
+    {
+        cLayout = "~/Views/Shared/_LayoutTenant.cshtml";
+    }
+    else if (User.IsInRole("Maintenance"))
+    {
+        cLayout = "~/Views/Shared/_LayoutWorker.cshtml";
+    }
+    else
+    {
+        cLayout = "~/Views/Shared/_Layout.cshtml";
+    }
+    Layout = cLayout;
 }
