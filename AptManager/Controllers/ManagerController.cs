@@ -41,11 +41,12 @@ namespace AptManager.Controllers
                 {
                     return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
                 }
-                Worker worker = db.Workers.Find(id);
+                MaintenanceOrder worker = db.MaintenanceOrders.Find(id);
                 if (worker == null)
                 {
                     return HttpNotFound();
                 }
+                ViewBag.Workers = db.Workers.ToList();
                 return View(worker);
             
         }
@@ -57,7 +58,7 @@ namespace AptManager.Controllers
             var workOrder = (from w in db.MaintenanceOrders where w.OrderId == order.OrderId select w).FirstOrDefault();
             var assignedWorker = (from a in db.Workers where a.WorkerId == worker.WorkerId select a).FirstOrDefault();
             workOrder.WorkerId = assignedWorker.WorkerId;
-            db.MaintenanceOrders.Add(workOrder);
+            db.Entry(workOrder).State = EntityState.Modified;
             db.SaveChanges();
             return RedirectToAction("WorkOrders", "Manager");
         }
@@ -115,7 +116,7 @@ namespace AptManager.Controllers
         public ActionResult LateRentMessage()
         {
             PartialView("");
-            return 
+            return View();
         }
 
         public ActionResult TenantNotification(int? id)

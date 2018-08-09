@@ -1,0 +1,15 @@
+﻿@model AptManager.Models.MaintenanceOrder
+
+@{
+    ViewBag.Title = "AssignWorkOrder";
+}
+
+<h2>Assign Work Order</h2>
+
+<div class="form-group">
+    @Html.Label("Assign Employee", new { @class = "col-md-2 control-label" })
+    <div class="col-md-10">
+        @*@Html.DropDownList("Name")*@
+        @Html.DropDownList("Workers", (SelectList)ViewBag.Workers, " ")
+    </div>
+</div>
