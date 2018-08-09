@@ -8,9 +8,9 @@
     <title>Pending Work Orders</title>
 </head>
 <body>
-    <p>
-        @Html.ActionLink("Create New Work Order", "Create")
-    </p>
+  <br />
+    <br />
+
     <table class="table">
         <tr>
             <th>
@@ -55,9 +55,9 @@
                 @Html.DisplayFor(modelItem => item.IsCompleted)
             </td>
             <td>
-                @Html.ActionLink("Assign", "AssignWorkOrder", new { id=item.OrderId }) |
-                @Html.ActionLink("Details", "Details", new { id=item.OrderId }) |
-                @Html.ActionLink("Delete", "Delete", new { id=item.OrderId })
+                @Html.ActionLink("Assign", "AssignWorkOrder", new { id = item.OrderId }) &nbsp;   &nbsp;
+                @*@Html.ActionLink("Details", "Details", new { id = item.OrderId })  &nbsp;   &nbsp;*@
+                @Html.ActionLink("Delete", "Delete", "MaintenanceOrder", new { id = item.OrderId })
             </td>
         </tr>
     }
