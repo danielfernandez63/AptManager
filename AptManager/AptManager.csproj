@@ -352,9 +352,8 @@
     <Content Include="Views\Workers\Edit.cshtml" />
     <Content Include="Views\Home\Attractions.cshtml" />
     <Content Include="Views\Home\TwilioTesting.cshtml" />
-    <Content Include="Views\Manager\TenantNotification.cshtml" />
-    <Content Include="Views\Manager\View.cshtml" />
-    <Content Include="Views\Manager\AssignWorkOrder.cshtml" />
+    <Content Include="Views\Tenants\FileReport.cshtml" />
+    <Content Include="Views\Tenants\TicketComplete.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
