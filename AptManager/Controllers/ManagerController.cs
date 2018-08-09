@@ -33,7 +33,7 @@ namespace AptManager.Controllers
 
         public ActionResult WorkOrders()
         {
-            return View(db.MaintenanceOrders.ToList());
+            return View(db.MaintenanceOrders.Include(mtc => mtc.Worker).ToList());
         }
 
         public ActionResult AssignWorkOrder(int? id, Worker worker)
@@ -47,20 +47,32 @@ namespace AptManager.Controllers
                 {
                     return HttpNotFound();
                 }
-                ViewBag.Workers = new SelectList(db.Workers.OrderBy(w => w.WorkerId).ToList(), "Id");
+            var allWorkers = db.Workers;
+            //ViewBag.ZipCodeId = new SelectList(db.ZipCodes, "ZipCodeId", "ZipCodeId", employee.ZipCodeId);
+            ViewBag.Workers = new SelectList(allWorkers, "WorkerID" , "FirstName" /*, worker.FirstName*/);
+
+            //ViewBag.Workers = new SelectList(db.Workers.OrderBy(w => w.WorkerId).ToList(), "Id");
                 return View(order);
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult AssignWorkOrder(Worker worker, MaintenanceOrder order)
+        public ActionResult AssignWorkOrder([Bind(Include = "OrderId,WorkerId")]MaintenanceOrder order)
         {
-            var workOrder = (from w in db.MaintenanceOrders where w.OrderId == order.OrderId select w).SingleOrDefault();
-            var assignedWorker = (from a in db.Workers where a.WorkerId == worker.WorkerId select a).SingleOrDefault();
-            workOrder.WorkerId = assignedWorker.WorkerId;
-            db.MaintenanceOrders.Add(workOrder);
-            db.SaveChanges();
-            return RedirectToAction("WorkOrders", "Manager");
+            if (ModelState.IsValid)
+            {
+                int OrderFixedId = order.OrderId;
+
+                var workOrder = db.MaintenanceOrders.Where(ord => ord.OrderId == OrderFixedId).Single();
+
+                workOrder.WorkerId = order.WorkerId;
+
+                db.Entry(workOrder).State = EntityState.Modified;
+                db.SaveChanges();
+                return RedirectToAction("WorkOrders");                    
+            }
+
+            return View(order);
         }
 
         public ActionResult VisitorsToTenants(int? id)

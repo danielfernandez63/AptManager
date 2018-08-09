@@ -4,12 +4,13 @@
 
 <html>
 <head>
+    <br />
+
     <meta name="viewport" content="width=device-width" />
-    <title>Pending Work Orders</title>
+    <h2>Pending Work Orders</h2>
 </head>
 <body>
-  <br />
-    <br />
+
 
     <table class="table">
         <tr>
@@ -25,9 +26,9 @@
             <th>
                 @Html.DisplayNameFor(model => model.Description)
             </th>
-            <th>
+            @*<th>
                 @Html.DisplayNameFor(model => model.DueDate)
-            </th>
+            </th>*@
             <th>
                 @Html.DisplayNameFor(model => model.IsCompleted)
             </th>
@@ -48,16 +49,16 @@
             <td>
                 @Html.DisplayFor(modelItem => item.Description)
             </td>
-            <td>
+            @*<td>
                 @Html.DisplayFor(modelItem => item.DueDate)
-            </td>
+            </td>*@
             <td>
                 @Html.DisplayFor(modelItem => item.IsCompleted)
             </td>
             <td>
-                @Html.ActionLink("Assign", "AssignWorkOrder", new { id = item.OrderId }) &nbsp;   &nbsp;
+                @Html.ActionLink("Assign A Worker", "AssignWorkOrder", new { id = item.OrderId }) &nbsp;   &nbsp;
                 @*@Html.ActionLink("Details", "Details", new { id = item.OrderId })  &nbsp;   &nbsp;*@
-                @Html.ActionLink("Delete", "Delete", "MaintenanceOrder", new { id = item.OrderId })
+                @Html.ActionLink("Delete An Order", "Delete", "MaintenanceOrder", new { id = item.OrderId })
             </td>
         </tr>
     }

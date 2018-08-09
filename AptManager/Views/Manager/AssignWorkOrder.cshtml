@@ -15,13 +15,38 @@
     @Html.HiddenFor(model => model.WorkerId)
     @Html.HiddenFor(model => model.OrderId)
 
+
+
     <div class="form-group">
-        @Html.Label("Assign Employee", new { @class = "col-md-2 control-label" })
+        @Html.LabelFor(model => model.Worker, "First Name of Worker", htmlAttributes: new { @class = "control-label col-md-2" })
         <div class="col-md-10">
-            @*@Html.DropDownList("Name")*@
-            @Html.DropDownList("Workers", (SelectList)ViewBag.Workers, "Employee Name", Model.WorkerId)
+            @*   @Html.DropDownList("PickUpId", null, htmlAttributes: new { @class = "form-control" })*@
+            @Html.DropDownListFor(model => model.WorkerId, ViewBag.Workers as SelectList, "", new { @class = "form-control" })
+            @*@Html.EditorFor(model => model.PickUpDate, new { htmlAttributes = new { @class = "form-control" } })*@
+            @Html.ValidationMessageFor(model => model.Worker, "", new { @class = "text-danger" })
         </div>
     </div>
+
+
+    @*<div class="form-group">
+        @Html.LabelFor(model => model.PickUpDay, "Pick Up Day", htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.DropDownListFor(model => model.PickUpDay, ViewBag.PickUpId as SelectList, new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.PickUpDay, "", new { @class = "text-danger" })
+        </div>
+    </div>*@
+
+
+    @*<div class="form-group">
+            @Html.Label("Assign Employee", new { @class = "col-md-2 control-label" })
+            <div class="col-md-10">
+                @Html.DropDownList("Name")
+                @Html.DropDownList("Workers", (SelectList)ViewBag.Workers, "Employee Name", Model.WorkerId)
+            </div>
+        </div>*@
+
+
+
     <div class="form-group">
         <div class="col-md-offset-2 col-md-10">
             <input type="submit" value="Create" class="btn btn-default" />
