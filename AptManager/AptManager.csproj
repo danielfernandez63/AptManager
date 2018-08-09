@@ -355,6 +355,7 @@
     <Content Include="Views\Tenants\TenantNotification.cshtml" />
     <Content Include="Views\Workers\WorkOrderList.cshtml" />
     <Content Include="Views\Workers\CompleteTask.cshtml" />
+    <Content Include="Views\Tenants\PayRent.cshtml" />
     <Content Include="Views\Shared\_LayoutManager.cshtml" />
     <Content Include="Views\Shared\_LayoutTenant.cshtml" />
     <Content Include="Views\Shared\_LayoutWorker.cshtml" />
