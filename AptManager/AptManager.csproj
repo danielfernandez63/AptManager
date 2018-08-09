@@ -354,6 +354,8 @@
     <Content Include="Views\Home\TwilioTesting.cshtml" />
     <Content Include="Views\Tenants\FileReport.cshtml" />
     <Content Include="Views\Tenants\TicketComplete.cshtml" />
+    <Content Include="Views\Manager\AssignWorkOrder.cshtml" />
+    <Content Include="Views\Tenants\TenantNotification.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -35,19 +35,19 @@ namespace AptManager.Controllers
             return View(db.MaintenanceOrders.ToList());
         }
 
-        public ActionResult AssignWorkOrder(int? id)
+        public ActionResult AssignWorkOrder(int? id, Worker worker)
         {
                 if (id == null)
                 {
                     return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
                 }
-                MaintenanceOrder worker = db.MaintenanceOrders.Find(id);
-                if (worker == null)
+                MaintenanceOrder order = db.MaintenanceOrders.Find(id);
+                if (order == null)
                 {
                     return HttpNotFound();
                 }
-                ViewBag.Workers = db.Workers.ToList();
-                return View(worker);
+                ViewBag.Workers = new SelectList(db.Workers.OrderBy(w => w.WorkerId).ToList(), "Id");
+                return View(order);
             
         }
 
@@ -55,8 +55,8 @@ namespace AptManager.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult AssignWorkOrder(Worker worker, MaintenanceOrder order)
         {
-            var workOrder = (from w in db.MaintenanceOrders where w.OrderId == order.OrderId select w).FirstOrDefault();
-            var assignedWorker = (from a in db.Workers where a.WorkerId == worker.WorkerId select a).FirstOrDefault();
+            var workOrder = (from w in db.MaintenanceOrders where w.OrderId == order.OrderId select w).SingleOrDefault();
+            var assignedWorker = (from a in db.Workers where a.WorkerId == worker.WorkerId select a).SingleOrDefault();
             workOrder.WorkerId = assignedWorker.WorkerId;
             db.Entry(workOrder).State = EntityState.Modified;
             db.SaveChanges();
