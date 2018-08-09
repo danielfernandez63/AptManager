@@ -112,6 +112,24 @@ namespace AptManager.Controllers
             return View(housingUnit);
         }
 
+        public ActionResult LateRentMessage()
+        {
+            PartialView("");
+            return 
+        }
+
+        public ActionResult TenantNotification(int? id)
+        {
+            var user = db.Tenants.Find(id);
+
+             if (user.ApplicationUserId == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            return View(user);
+
+        }
+
         // GET: HousingUnits/Create
         public ActionResult Create()
         {
