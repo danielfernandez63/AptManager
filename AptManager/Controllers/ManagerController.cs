@@ -14,6 +14,7 @@ namespace AptManager.Controllers
     public class ManagerController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();
+        TwilioNotification TwilioNotification = new TwilioNotification();
         // GET: Manager
 
         public ActionResult Index()
@@ -112,10 +113,12 @@ namespace AptManager.Controllers
             return View(housingUnit);
         }
 
-        public ActionResult LateRentMessage()
+        //VERY MVP, NEEDS A LOT MORE USER INPUT OPTIONS. WANT TO ADD PARTIAL VIEW
+        public ActionResult LateRentMessage(string phoneNumber)
         {
-            PartialView("");
-            return 
+            string messageText = "Your past due rent balance is: xxx please remit payment at your earliest convenience";
+            TwilioNotification.TwilioMessage(phoneNumber, messageText);
+            return View();
         }
 
         public ActionResult TenantNotification(int? id)
