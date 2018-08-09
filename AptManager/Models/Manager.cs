@@ -28,7 +28,7 @@ namespace AptManager.Models
         [Display(Name = "Last Name")]
         public string LastName { get; set; }
 
-        [Display(Name = "Email Address")]
+        [Display(Name = "Contact Email")]
         public string Email { get; set; }
 
         [Display(Name = "Phone Number")]

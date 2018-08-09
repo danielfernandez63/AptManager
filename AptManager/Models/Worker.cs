@@ -15,13 +15,18 @@ namespace AptManager.Models
         public string ApplicationUserId { get; set; }
         public ApplicationUser ApplicationUser { get; set; }
 
+        [ForeignKey("Manager")]
+        [Display(Name = "My manager")]
+        public int? ManagerId { get; set; }
+        public Manager Manager { get; set; }
+
         [Display(Name = "First Name")]
         public string FirstName { get; set; }
 
         [Display(Name = "Last Name")]
         public string LastName { get; set; }
 
-        [Display(Name = "Email Address")]
+        [Display(Name = "Contact Email")]
         public string Email { get; set; }
 
         [Display(Name = "Phone Number")]

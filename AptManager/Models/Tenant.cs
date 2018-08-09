@@ -28,7 +28,7 @@ namespace AptManager.Models
         [Display(Name = "Last Name")]
         public string LastName { get; set; }
 
-        [Display(Name = "Email Address")]
+        [Display(Name = "Contact Email")]
         public string Email { get; set; }
 
         [Display(Name = "Phone Number")]
@@ -36,6 +36,13 @@ namespace AptManager.Models
 
         [Display(Name = "Rent balance due")]
         public int BalanceDue{ get; set; }
+
+        [Display(Name = "Rent Due Date")]
+        public DateTime? RentDueDate { get; set; }
+
+        [Display(Name = "Rent Paid This Month")]
+        public bool RentPaid { get; set; }
+
 
     }
 }

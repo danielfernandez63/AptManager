@@ -10,6 +10,7 @@ namespace AptManager.Models
     public class HousingUnit
     {
         [Key]
+        [Display(Name = "Room number")]
         public int UnitId { get; set; }
 
         [Display(Name = "Monthly rent")]
