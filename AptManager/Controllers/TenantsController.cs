@@ -84,6 +84,36 @@ namespace AptManager.Controllers
 
         
 
+        public ActionResult CheckIfRentDueDate(int? id)
+        {
+            var tenant = db.Tenants.Find(id);
+            int dueDate = 5; //TEMP!! NEED TO GRAB THIS FROM TENANT.DUEDATE
+            int reminderDate = 1;
+            if (DateTime.Now.Day == reminderDate)
+            {
+                string message = $"Dear, {tenant.FirstName} {tenant.LastName} your rent payment of {tenant.HousingUnit.MonthlyRent} is due on the 5th. Thank you";
+                TwilioNotification.TwilioMessage(message, tenant.PhoneNumber);
+            }
+
+            else if (dueDate == DateTime.Now.Day)
+            {
+                ChargeRent(tenant);
+            }
+            
+            return RedirectToAction("");
+
+        }
+
+        public void ChargeRent(Tenant tenant)
+        {
+            var unit = db.HousingUnits.Find(tenant.HousingUnit.UnitId);
+            Tenant updatedTenant = db.Tenants.Find(tenant.TenantId);
+            updatedTenant.BalanceDue = tenant.BalanceDue + unit.MonthlyRent;
+            db.Entry(updatedTenant).State = EntityState.Modified;
+            db.SaveChanges();
+        }
+        
+
         public ActionResult ManagerNotification(int? id)
         {
             var user = db.Tenants.Find(id);
