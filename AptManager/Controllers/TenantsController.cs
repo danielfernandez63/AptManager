@@ -65,18 +65,38 @@ namespace AptManager.Controllers
             return View();
         }
 
-        //public ActionResult ManagerNotification(int? id)
-        //{
-        //    var user = db.Tenants.Find(id);
 
-        //    if (user.ApplicationUserId == null)
-        //    {
-        //        return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-        //    }
-        //    return RedirectToAction("WorkOrderMessage", );
-        //}
-            // GET: HousingUnits/Create
-            public ActionResult Create()
+        // GET: HousingUnits/Details/5
+        public ActionResult PayRent(int? id)
+        {
+            var user = User.Identity.GetUserId();
+
+            var loggedInUser = db.Tenants.Where(c => c.ApplicationUserId == user).Single();
+
+            //Tenant tenant = te
+            if (loggedInUser.ApplicationUserId == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            return View(loggedInUser);
+
+        }
+
+
+
+        public ActionResult ManagerNotification(int? id)
+        {
+            var user = db.Tenants.Find(id);
+
+            if (user.ApplicationUserId == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            return RedirectToAction("WorkOrderMessage", user);
+        }
+        // GET: HousingUnits/Create
+        public ActionResult Create()
+
         {
             return View();
         }

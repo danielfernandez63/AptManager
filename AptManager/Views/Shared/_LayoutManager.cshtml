@@ -21,14 +21,14 @@
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
-                    <li>@Html.ActionLink("Attractions In The Area", "Attractions", "Home")</li>
+                    @*   <li>@Html.ActionLink("Attractions In The Area", "Attractions", "Home")</li>*@
                     <li>@Html.ActionLink("Why Choose Us?", "About", "Home")</li>
                     <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
-                    <li>@Html.ActionLink("WorkerHomeTesting", "Index", "Home")</li>
+                    @*  <li>@Html.ActionLink("WorkerHomeTesting", "Index", "Home")</li>*@
                     <li>@Html.ActionLink("ManagerHomeTesting", "Tenants", "Manager")</li>
-                    <li>@Html.ActionLink("TenantHomeTesting", "Details", "Tenants")</li>
-             
-
+                    @*<li>@Html.ActionLink("TenantHomeTesting", "Details", "Tenants")</li>*@
+                   <li>  @Html.ActionLink(" Accept New Tenants", "Visitors", "Manager") </li>
+                   <li>  @Html.ActionLink(" View Active Work Orders", "WorkOrders" , "Managers") </li>
                 </ul>
                 @Html.Partial("_LoginPartial")
             </div>
