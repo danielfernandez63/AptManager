@@ -10,7 +10,6 @@
 *.sln.docstates
 
 
-TwilioNotification.class
 
 # User-specific files (MonoDevelop/Xamarin Studio)
 *.userprefs
@@ -331,3 +330,6 @@ ASALocalRun/
 
 # MFractors (Xamarin productivity tool) working folder
 .mfractor/
+
+
+APIKeys.cs
