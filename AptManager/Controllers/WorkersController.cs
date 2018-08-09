@@ -43,9 +43,16 @@ namespace AptManager.Controllers
             return View(maintenanceOrder);
         }
 
-        public ActionResult CompleteTask()
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult CompleteTask(MaintenanceOrder order)
         {
-            return View();
+            var currentOrder = (from w in db.MaintenanceOrders where w.OrderId == order.OrderId select w).SingleOrDefault();
+            currentOrder.IsCompleted = order.IsCompleted;
+            currentOrder.Description = order.Description;
+            db.Entry(currentOrder).State = EntityState.Modified;
+            db.SaveChanges();
+            return RedirectToAction("WorkOrderList", "Workers");
         }
         // GET: HousingUnits/Details/5
         public ActionResult Details(int? id)

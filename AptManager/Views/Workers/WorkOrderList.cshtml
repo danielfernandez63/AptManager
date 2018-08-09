@@ -52,6 +52,7 @@
         <td>
             @Html.ActionLink("Home", "WorkerPortal", new { id=item.OrderId }) |
             @Html.ActionLink("Details", "Details", new { id=item.OrderId }) |
+            @Html.ActionLink("Complete", "CompleteTask", new { id=item.OrderId})
         </td>
     </tr>
 }

@@ -358,6 +358,7 @@
     <Content Include="Views\Manager\AssignWorkOrder.cshtml" />
     <Content Include="Views\Tenants\TenantNotification.cshtml" />
     <Content Include="Views\Workers\WorkOrderList.cshtml" />
+    <Content Include="Views\Workers\CompleteTask.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
