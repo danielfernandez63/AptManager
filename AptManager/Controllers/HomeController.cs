@@ -34,9 +34,15 @@ namespace AptManager.Controllers
             //    coordinates.Add(results.Businesses[i].Coordinates.Latitude);
             //    coordinates.Add(results.Businesses[i].Coordinates.Longitude);
             //}
-            var name = results.Businesses[1].Name.ToString();
 
-            ViewBag.CompanyName = name;
+            var name = new List<string>();
+
+            for (int i = 0; i < request.MaxResults; i++)
+            {
+                name.Add(results.Businesses[i].Name.ToString());
+                ViewBag.CompanyName = name;
+            }
+            
 
             //GoogleSigned.AssignAllServices(new GoogleSigned("AIzaSyBMyOWThQk4370WKi0Ms3kWhqIgBFYquHw"));
             //latitude.Add(results.Businesses[0].Coordinates.Latitude);
@@ -49,7 +55,7 @@ namespace AptManager.Controllers
             //}
 
 
-            return View(name);
+            return View();
         }
 
         public ActionResult TwilioTesting()
