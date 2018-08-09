@@ -13,21 +13,23 @@
 
     <hr />
     <dl class="dl-horizontal">
-        <dt>
+        @*<dt>
             @Html.DisplayNameFor(model => model.ApplicationUserId)
         </dt>
         
         <dd>
             @Html.DisplayFor(model => model.ApplicationUserId)
-        </dd>
+        </dd>*@
 
-        <dt>
+        @*<dt>
             @Html.DisplayNameFor(model => model.UnitId)
         </dt>
 
         <dd>
             @Html.DisplayFor(model => model.UnitId)
-        </dd>
+        </dd>*@
+
+        <br />
 
         <dt>
             @Html.DisplayNameFor(model => model.FirstName)
@@ -37,6 +39,8 @@
             @Html.DisplayFor(model => model.FirstName)
         </dd>
 
+        <br />
+
         <dt>
             @Html.DisplayNameFor(model => model.LastName)
         </dt>
@@ -44,6 +48,8 @@
         <dd>
             @Html.DisplayFor(model => model.LastName)
         </dd>
+
+        <br />
 
         <dt>
             @Html.DisplayNameFor(model => model.Email)
@@ -53,6 +59,8 @@
             @Html.DisplayFor(model => model.Email)
         </dd>
 
+        <br />
+
         <dt>
             @Html.DisplayNameFor(model => model.PhoneNumber)
         </dt>
@@ -60,6 +68,8 @@
         <dd>
             @Html.DisplayFor(model => model.PhoneNumber)
         </dd>
+
+        <br />
 
         <dt>
             @Html.DisplayNameFor(model => model.BalanceDue)
@@ -72,6 +82,8 @@
     </dl>
 </div>
 <p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.TenantId }) |
-   
+    @Html.ActionLink("Edit Your Information", "Edit", new { id = Model.TenantId }) &nbsp; &nbsp;
+    &nbsp;
+
+    @Html.ActionLink("File A Maintenance Report", "FileReport")
 </p>
