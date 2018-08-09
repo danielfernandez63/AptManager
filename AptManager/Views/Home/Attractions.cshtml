@@ -9,14 +9,30 @@
     Name: @ViewBag.CompanyName
 </p>
 
-@*@foreach (var item in ViewBag)
-{
-    @Html.DisplayFor(modelItem => item);
-}*@
+<table>
+    <tr>
+        <th>Company Name</th>
+        <th>Ratings</th>
+    </tr>
+    <tr>
+        <td>
+            @foreach (var item in ViewBag.CompanyName)
+            {
+                <h4>@Html.DisplayFor(modelItem => item)</h4>
+            }
+        </td>
+        <td>
+            @foreach (var item in ViewBag.Ratings)
+            {
+                <p>
+                    <h4>@Html.DisplayFor(modelItem => item)</h4>
+                </p>
+            }
+        </td>
+    </tr>
+</table>
 
 @*<script>
-
-
     function initMap() {
         var myLatLng = { lat: 48.584715, lng: 7.748556 };
 
