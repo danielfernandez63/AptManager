@@ -19,7 +19,7 @@ namespace AptManager
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
-            StripeConfiguration.SetApiKey(ConfigurationManager.AppSettings[skey]);
+            StripeConfiguration.SetApiKey(ConfigurationManager.AppSettings["sk_test_CAtwmaT2le5Vw7iJfk9FlBSp"]);
         }
     }
 }

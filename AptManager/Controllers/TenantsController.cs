@@ -251,16 +251,19 @@ namespace AptManager.Controllers
         public ActionResult Charge()
         {
             var stripePubKey = APIKeys.GetPubKey();
-            var stripePublishKey = ConfigurationManager.AppSettings[stripePubKey];
+            var stripePublishKey = ConfigurationManager.AppSettings["pk_test_kKzDFMzgjOeAm8je9paxecf3"];
             ViewBag.StripePublishKey = stripePublishKey;
             return View();
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Charge(string stripeEmail, string stripeToken, Tenant tenant)
+        public ActionResult Charge(string stripeEmail, string stripeToken /*Tenant tenant*/)
         {
-            var cost = tenant.BalanceDue;
+            var user = User.Identity.GetUserId();
+            var loggedInUser = db.Tenants.Where(c => c.ApplicationUserId == user).Single();
+
+            var cost = loggedInUser.BalanceDue;
             var customers = new StripeCustomerService();
             var charges = new StripeChargeService();
 
