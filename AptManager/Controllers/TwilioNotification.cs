@@ -27,8 +27,9 @@ namespace AptManager.Controllers
 
         public static void NotifyWorkerOfReport(MaintenanceOrder order)
         {
+            string phoneNumber = GetManagerNumber();
             var message = $"You have had a new work order assigned to you. Please visit the webpage to view this order";
-            TwilioMessage(order.Worker.PhoneNumber, message);
+            TwilioMessage(phoneNumber, message);
         }
 
         public static string GetManagerNumber()
