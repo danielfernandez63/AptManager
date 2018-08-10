@@ -12,7 +12,7 @@ namespace AptManager
 {
     public class MvcApplication : System.Web.HttpApplication
     {
-        string skey = APIKeys.GetPrivateKey();
+        
         protected void Application_Start()
         {
             AreaRegistration.RegisterAllAreas();
