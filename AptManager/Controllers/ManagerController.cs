@@ -39,12 +39,12 @@ namespace AptManager.Controllers
         public ActionResult NotifyTenantOfLateRent()
         {
             TwilioNotification.NotifyTenantOfLateRent();
-            return RedirectToAction("TenantNotification");
+            return RedirectToAction("Tenants");
         }
         public ActionResult NotifyTenantOfUpcomingRent()
         {
             TwilioNotification.NotifyTenantOfUpcomingRent();
-            return RedirectToAction("TenantNotification");
+            return RedirectToAction("Tenants");
         }
         
 

@@ -59,10 +59,17 @@
         <dd>
             @Html.DisplayFor(model => model.BalanceDue)
         </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.RentPaid)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.RentPaid)
+        </dd>
+
 
     </dl>
 </div>
 <p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.TenantId }) |
-    @Html.ActionLink("Back to List", "Index")
+    @Html.ActionLink("Back to List", "Tenants")
 </p>
