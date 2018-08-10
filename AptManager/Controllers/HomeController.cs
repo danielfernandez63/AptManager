@@ -29,31 +29,41 @@ namespace AptManager.Controllers
             var client = new Yelp.Api.Client("d76-ipn8brnI7BsOm7yk_X0Xa7-RTXpO8v4G93RcqMA9FRT3AdFbGsV8MkvAW6Q9ww-0YikIX7lDNgHfZ-6yDrfgG28FrU3PAj4TTUD1YT9mJO-hkAxqrKl-IzxrW3Yx");
             var results = await client.SearchBusinessesAllAsync(request);
 
-            //List<double> coordinates = new List<double>();
-            //for (int i = 0; i < testRequest.MaxResults; i++) {
-            //    coordinates.Add(results.Businesses[i].Coordinates.Latitude);
-            //    coordinates.Add(results.Businesses[i].Coordinates.Longitude);
-            //}
-
+            var latitudes = new List<string>();
+            var longitudes = new List<string>();
+            var links = new List<string>();
             var name = new List<string>();
-
+            var ratings = new List<string>();
+            
+            //Lat and long for attraction
             for (int i = 0; i < request.MaxResults; i++)
             {
-                name.Add(results.Businesses[i].Name.ToString());
+                latitudes.Add(results.Businesses[i].Coordinates.Latitude.ToString() + "\n");
+                longitudes.Add(results.Businesses[i].Coordinates.Longitude.ToString() + "\n");
+                ViewBag.Latitudes = latitudes;
+                ViewBag.Longitudes = longitudes;
+            }
+
+            //Name of attraction
+            for (int i = 0; i < request.MaxResults; i++)
+            {
+                name.Add(results.Businesses[i].Name.ToString() + "\n");
                 ViewBag.CompanyName = name;
             }
-            
 
-            //GoogleSigned.AssignAllServices(new GoogleSigned("AIzaSyBMyOWThQk4370WKi0Ms3kWhqIgBFYquHw"));
-            //latitude.Add(results.Businesses[0].Coordinates.Latitude);
-            //for (int i = 0; i < request.MaxResults; i++)
-            //{
-            //    var tupleList = new List<Tuple<double, double>>
-            //   {
-            //       Tuple.Create( results.Businesses[i].Coordinates.Latitude, results.Businesses[i].Coordinates.Latitude )
-            //   };
-            //}
+            //Link to attraction
+            for (int i = 0; i < request.MaxResults; i++)
+            {
+                links.Add(results.Businesses[i].Url.ToString() + "\n");
+                ViewBag.Links = links;
+            }
 
+            //Rating for attraction
+            for (int i = 0; i < request.MaxResults; i++)
+            {
+                ratings.Add(results.Businesses[i].Rating.ToString() + "\n");
+                ViewBag.Ratings = ratings;
+            }
 
             return View();
         }
