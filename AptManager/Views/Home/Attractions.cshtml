@@ -1,19 +1,21 @@
 ﻿@{
-    ViewBag.Title = "Attractions";
+    ViewBag.Title = "Attractions Near You";
 }
 <h2>@ViewBag.Title</h2>
 
 @model IEnumerable<string>
+<br />
 
 <p>
-    Local Attractions
+    Local Link with Reviews Coming Soon!
 </p>
 
 <table>
     <tr>
-        <th>Company Name</th>
-        <th>Ratings</th>
+        <th>Restaurant Name</th>
+        <th>Rating of Restaurant</th>
     </tr>
+    <br />
     <tr>
         <td>
             @foreach (var item in ViewBag.CompanyName)

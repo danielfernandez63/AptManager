@@ -2,6 +2,7 @@
 @{
     ViewBag.Title = "Charge";
 }
+<script type="text/javascript" src="https://js.stripe.com/v2/"></script>
 
 
 <br>
@@ -12,7 +13,7 @@
 <form action="/Payment/Charge" method="POST">
     <article>
         <label>
-            Amount: $1875.00    
+            Amount: $1875.00
         </label>
     </article>
     <br />
@@ -22,7 +23,6 @@
             class="stripe-button"
             data-key="@ViewBag.StripePublishKey"
             data-locale="auto"
-
             data-description="Monthly Rent Charge"
             data-amount="187500">
 

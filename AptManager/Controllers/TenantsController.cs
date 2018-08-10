@@ -250,11 +250,10 @@ namespace AptManager.Controllers
 
         public ActionResult Charge()
         {
-            var stripePubKey = APIKeys.GetPubKey();
-
-
-            var stripePublishKey = ConfigurationManager.AppSettings["pk_test_kKzDFMzgjOeAm8je9paxecf3"];
-
+            StripeConfiguration.SetApiKey("sk_test_CAtwmaT2le5Vw7iJfk9FlBSp");
+            //var stripePubKey = APIKeys.GetPubKey();
+            var stripePublishKey = /*ConfigurationManager.AppSetting*/"pk_test_BkWKjB5Ie1Y51YhuFGt0OC5R";
+        
 
             ViewBag.StripePublishKey = stripePublishKey;
             return View();
@@ -284,7 +283,8 @@ namespace AptManager.Controllers
                 Currency = "usd",
                 CustomerId = customer.Id
             });
-            return View();
+            loggedInUser.BalanceDue -= 1875;
+            return RedirectToAction("Details");
         }
 
         protected override void Dispose(bool disposing)
