@@ -251,7 +251,7 @@ namespace AptManager.Controllers
         public ActionResult Charge()
         {
             var stripePubKey = APIKeys.GetPubKey();
-            var stripePublishKey = ConfigurationManager.AppSettings[stripePubKey];
+            var stripePublishKey = ConfigurationManager.AppSettings["stripePubKey"];
             ViewBag.StripePublishKey = stripePublishKey;
             return View();
         }

@@ -25,7 +25,7 @@
             class="stripe-button"
             data-key="@ViewBag.StripePublishKey"
             data-locale="auto"
-            data-description="Sample Charge"
-            data-amount="500">
+            data-description="Rent Charge"
+            data-amount="@Html.DisplayFor(model => model.BalanceDue)">
     </script>
 </form>
