@@ -365,6 +365,7 @@
     <Content Include="Views\Shared\_LayoutTenant.cshtml" />
     <Content Include="Views\Shared\_LayoutWorker.cshtml" />
     <Content Include="Views\Manager\AssignWorkOrder.cshtml" />
+    <Content Include="Views\Tenants\Charge.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

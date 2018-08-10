@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Data;
 using System.Data.Entity;
 using System.Linq;
@@ -8,6 +9,7 @@ using System.Web;
 using System.Web.Mvc;
 using AptManager.Models;
 using Microsoft.AspNet.Identity;
+using Stripe;
 
 namespace AptManager.Controllers
 {
@@ -244,6 +246,38 @@ namespace AptManager.Controllers
             db.HousingUnits.Remove(housingUnit);
             db.SaveChanges();
             return RedirectToAction("Index");
+        }
+
+        public ActionResult Charge()
+        {
+            var stripePubKey = APIKeys.GetPubKey();
+            var stripePublishKey = ConfigurationManager.AppSettings[stripePubKey];
+            ViewBag.StripePublishKey = stripePublishKey;
+            return View();
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Charge(string stripeEmail, string stripeToken, Tenant tenant)
+        {
+            var cost = tenant.BalanceDue;
+            var customers = new StripeCustomerService();
+            var charges = new StripeChargeService();
+
+            var customer = customers.Create(new StripeCustomerCreateOptions
+            {
+                Email = stripeEmail,
+                SourceToken = stripeToken
+            });
+
+            var charge = charges.Create(new StripeChargeCreateOptions
+            {
+                Amount =  cost,//charge in cents
+                Description = "Rent Charge",
+                Currency = "usd",
+                CustomerId = customer.Id
+            });
+            return View();
         }
 
         protected override void Dispose(bool disposing)
