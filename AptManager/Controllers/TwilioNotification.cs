@@ -25,12 +25,28 @@ namespace AptManager.Controllers
                 );
         }
 
-        public static void NotifyWorkerOfReport(MaintenanceOrder order)
+        public static void NotifyWorkerOfReport()
         {
             string phoneNumber = GetManagerNumber();
             var message = $"You have had a new work order assigned to you. Please visit the webpage to view this order";
             TwilioMessage(phoneNumber, message);
         }
+
+        public static void NotifyTenantOfUpcomingRent()
+        {
+            string phoneNumber = GetManagerNumber();
+            var message = $"Please note that your rent payment is due on the 5th of the month. Thank you";
+            TwilioMessage(phoneNumber, message);
+        }
+
+        public static void NotifyTenantOfLateRent()
+        {
+            string phoneNumber = GetManagerNumber();
+            var message = $"You have a past due balance of: $1850.00. Please remit payment at your earliest convenience";
+            TwilioMessage(phoneNumber, message);
+        }
+
+
 
         public static string GetManagerNumber()
         {

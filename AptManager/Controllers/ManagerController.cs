@@ -36,6 +36,18 @@ namespace AptManager.Controllers
             return View(db.MaintenanceOrders.Include(mtc => mtc.Worker).ToList());
         }
 
+        public ActionResult NotifyTenantOfLateRent()
+        {
+            TwilioNotification.NotifyTenantOfLateRent();
+            return RedirectToAction("TenantNotification");
+        }
+        public ActionResult NotifyTenantOfUpcomingRent()
+        {
+            TwilioNotification.NotifyTenantOfUpcomingRent();
+            return RedirectToAction("TenantNotification");
+        }
+        
+
         public ActionResult AssignWorkOrder(int? id, Worker worker)
         {
                 if (id == null)
@@ -69,7 +81,7 @@ namespace AptManager.Controllers
 
                 db.Entry(workOrder).State = EntityState.Modified;
                 db.SaveChanges();
-                TwilioNotification.NotifyWorkerOfReport(workOrder);
+                TwilioNotification.NotifyWorkerOfReport();
                 return RedirectToAction("WorkOrders");                    
             }
 
