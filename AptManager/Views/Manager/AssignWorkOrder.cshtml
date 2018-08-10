@@ -12,7 +12,6 @@
 @using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
-    @Html.HiddenFor(model => model.WorkerId)
     @Html.HiddenFor(model => model.OrderId)
 
 
